@@ -229,7 +229,7 @@ img {
 .hero-subtitle {
   font-size: var(--font-size-lg);
   color: var(--color-secondary);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 0.5rem;
   line-height: var(--line-height-relaxed);
 }
 
@@ -245,7 +245,7 @@ img {
 }
 
 .newsletter-image {
-  margin: var(--spacing-md) auto var(--spacing-md);
+  margin: 0.5rem auto 0.75rem;
   max-width: 280px;
 }
 
