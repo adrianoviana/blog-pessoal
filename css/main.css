@@ -244,6 +244,17 @@ img {
   color: var(--color-accent);
 }
 
+.newsletter-image {
+  margin: var(--spacing-xl) auto var(--spacing-lg);
+  max-width: 600px;
+}
+
+.newsletter-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
 /* ========================================
    Newsletter Form
    ======================================== */
