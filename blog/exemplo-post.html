@@ -3,44 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tutoriais de IA e arquitetura de software extremamente práticos. Artigos sobre inteligência artificial, AI nativa e liderança técnica.">
+    <meta name="description" content="Este é um post de exemplo mostrando como criar conteúdo em Markdown para o blog.">
     <meta name="author" content="Adriano Viana">
-    <meta name="keywords" content="blog, inteligência artificial, arquitetura de software, AI nativa, tutoriais IA, engenharia de prompt, carreira tech">
+    <meta name="keywords" content="tutorial, markdown, blog">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.adrianoviana.com.br/blog.html">
-    <meta property="og:title" content="Blog - Adriano Viana | Tutoriais de IA e Arquitetura">
-    <meta property="og:description" content="Tutoriais de IA e arquitetura de software extremamente práticos. Artigos sobre inteligência artificial, AI nativa e liderança técnica.">
-    <meta property="og:image" content="https://www.adrianoviana.com.br/assets/images/og-image.jpg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.adrianoviana.com.br/blog/exemplo-post.html">
+    <meta property="og:title" content="Exemplo de Post - Como Usar Markdown">
+    <meta property="og:description" content="Este é um post de exemplo mostrando como criar conteúdo em Markdown para o blog.">
+    <meta property="og:image" content="https://www.adrianoviana.com.br/assets/images/default-post.jpg">
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.adrianoviana.com.br/blog.html">
-    <meta name="twitter:title" content="Blog - Adriano Viana | Tutoriais de IA e Arquitetura">
-    <meta name="twitter:description" content="Tutoriais de IA e arquitetura de software extremamente práticos. Artigos sobre inteligência artificial, AI nativa e liderança técnica.">
-    <meta name="twitter:image" content="https://www.adrianoviana.com.br/assets/images/og-image.jpg">
+    <meta name="twitter:url" content="https://www.adrianoviana.com.br/blog/exemplo-post.html">
+    <meta name="twitter:title" content="Exemplo de Post - Como Usar Markdown">
+    <meta name="twitter:description" content="Este é um post de exemplo mostrando como criar conteúdo em Markdown para o blog.">
+    <meta name="twitter:image" content="https://www.adrianoviana.com.br/assets/images/default-post.jpg">
 
-    <title>Blog - Adriano Viana | Tutoriais de IA e Arquitetura</title>
+    <title>Exemplo de Post - Como Usar Markdown - Adriano Viana</title>
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/images/favicon.png">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Droid+Serif:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="/css/normalize.css?v=3">
     <link rel="stylesheet" href="/css/main.css?v=3">
     <link rel="stylesheet" href="/css/responsive.css?v=3">
 
-    <!-- Beehiiv Newsletter Script -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+
     <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
 </head>
 <body>
-    <!-- Header & Navigation -->
     <header class="site-header">
         <nav class="nav-container">
             <div class="nav-brand">
@@ -60,31 +55,76 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Blog Header -->
-        <section class="blog-header">
+    <main class="blog-post">
+        <section class="post-header">
             <div class="container">
-                <h1>Blog</h1>
-                <p class="blog-description">
-                    Tutoriais de IA e arquitetura de software extremamente práticos
-                </p>
+                <div class="post-meta">
+                    <time datetime="2026-02-03">02 de fev. de 2026</time>
+                    <span class="post-read-time">1 min de leitura</span>
+                </div>
+                <h1>Exemplo de Post - Como Usar Markdown</h1>
+                <div class="post-tags">
+                    <span class="tag">tutorial</span><span class="tag">markdown</span><span class="tag">blog</span>
+                </div>
             </div>
         </section>
 
-        <!-- Blog Content -->
-        <section class="blog-content">
+        <section class="post-content">
             <div class="container">
-                <!-- Empty State (mostrado inicialmente) -->
-                <div class="blog-empty-state">
-                    <h2>Em Breve!</h2>
-                    <p>
-                        Estou preparando conteúdo de qualidade para você.
-                        Inscreva-se na newsletter para ser notificado quando eu publicar novos artigos.
-                    </p>
+                <h1>Exemplo de Post - Como Usar Markdown</h1>
+<p>Este é um post de exemplo mostrando como criar conteúdo em Markdown para o blog.</p>
+<h2>O que é Markdown?</h2>
+<p>Markdown é uma linguagem de marcação leve que você pode usar para adicionar formatação a documentos de texto simples.</p>
+<h2>Como Criar um Post</h2>
+<p>Para criar um novo post, siga estes passos:</p>
+<ol>
+<li>Crie um arquivo <code>.md</code> no diretório <code>/posts</code></li>
+<li>Adicione o frontmatter (metadados) no início</li>
+<li>Escreva seu conteúdo usando Markdown</li>
+<li>Execute o script de build para gerar o HTML</li>
+</ol>
+<h2>Exemplo de Código</h2>
+<pre><code class="language-javascript">function saudacao(nome) {
+  console.log(`Olá, ${nome}!`);
+}
 
-                    <!-- Newsletter Form - Beehiiv Integration -->
-                    <div class="newsletter-form-wrapper" style="margin-top: 2rem;">
+saudacao(&quot;Mundo&quot;);
+</code></pre>
+<h2>Formatação de Texto</h2>
+<p>Você pode usar <strong>negrito</strong>, <em>itálico</em>, e <code>código inline</code>.</p>
+<h3>Lista de Recursos</h3>
+<ul>
+<li>Markdown simples</li>
+<li>Frontmatter YAML</li>
+<li>Syntax highlighting</li>
+<li>Imagens responsivas</li>
+<li>Tags e categorias</li>
+</ul>
+<h2>Conclusão</h2>
+<p>Markdown torna a escrita de posts muito mais simples e focada no conteúdo!</p>
+
+            </div>
+        </section>
+
+        <section class="post-footer">
+            <div class="container">
+                <div class="author-bio">
+                    <img src="/assets/images/profile.jpg" alt="Adriano Viana" class="author-image">
+                    <div class="author-info">
+                        <h3>Adriano Viana</h3>
+                        <p>Master Architect com mais de 20 anos de experiência. Especialista em IA Nativa e arquitetura de software.</p>
+                        <div class="author-social">
+                            <a href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer">X</a>
+                            <a href="https://www.youtube.com/@adriano_viana" target="_blank" rel="noopener noreferrer">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-newsletter-cta">
+                    <h3>Gostou do conteúdo?</h3>
+                    <p>Receba novos posts diretamente no seu email</p>
+                    <div class="newsletter-form-wrapper">
                         <iframe
                             src="https://subscribe-forms.beehiiv.com/5451f253-f9a8-4521-a2ca-dd4df40e6e7f"
                             class="beehiiv-embed"
@@ -95,43 +135,10 @@
                         </iframe>
                     </div>
                 </div>
-
-                <!-- Blog Posts Grid (oculto inicialmente - remova o style quando adicionar posts) -->
-                <div class="blog-grid" style="display: none;">
-                    <!-- Post Card Template - Exemplo de como adicionar posts futuros -->
-                    <!--
-                    <article class="post-card">
-                        <a href="/blog/seu-post-slug.html" class="post-card-link">
-                            <div class="post-card-image">
-                                <img src="/assets/images/posts/post-thumbnail.jpg" alt="Título do Post" loading="lazy">
-                            </div>
-                            <div class="post-card-content">
-                                <div class="post-meta">
-                                    <time datetime="2026-02-03">03 Fev 2026</time>
-                                    <span class="post-read-time">5 min de leitura</span>
-                                </div>
-                                <h2 class="post-title">Título do Seu Post</h2>
-                                <p class="post-excerpt">
-                                    Uma breve descrição do conteúdo do post para atrair leitores
-                                    e dar uma ideia do que eles vão encontrar no artigo completo.
-                                </p>
-                                <div class="post-tags">
-                                    <span class="tag">JavaScript</span>
-                                    <span class="tag">React</span>
-                                    <span class="tag">Web Development</span>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                    -->
-
-                    <!-- Adicione mais post cards aqui conforme criar novos artigos -->
-                </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-social">
@@ -157,9 +164,9 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="/js/main.js"></script>
-    <script src="/js/newsletter.js"></script>
-    <script src="/js/blog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>

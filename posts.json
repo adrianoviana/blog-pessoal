@@ -1,0 +1,15 @@
+[
+  {
+    "slug": "exemplo-post",
+    "title": "Exemplo de Post - Como Usar Markdown",
+    "date": "2026-02-03",
+    "excerpt": "Este é um post de exemplo mostrando como criar conteúdo em Markdown para o blog.",
+    "tags": [
+      "tutorial",
+      "markdown",
+      "blog"
+    ],
+    "image": "/assets/images/default-post.jpg",
+    "content": "<h1>Exemplo de Post - Como Usar Markdown</h1>\n<p>Este é um post de exemplo mostrando como criar conteúdo em Markdown para o blog.</p>\n<h2>O que é Markdown?</h2>\n<p>Markdown é uma linguagem de marcação leve que você pode usar para adicionar formatação a documentos de texto simples.</p>\n<h2>Como Criar um Post</h2>\n<p>Para criar um novo post, siga estes passos:</p>\n<ol>\n<li>Crie um arquivo <code>.md</code> no diretório <code>/posts</code></li>\n<li>Adicione o frontmatter (metadados) no início</li>\n<li>Escreva seu conteúdo usando Markdown</li>\n<li>Execute o script de build para gerar o HTML</li>\n</ol>\n<h2>Exemplo de Código</h2>\n<pre><code class=\"language-javascript\">function saudacao(nome) {\n  console.log(`Olá, ${nome}!`);\n}\n\nsaudacao(&quot;Mundo&quot;);\n</code></pre>\n<h2>Formatação de Texto</h2>\n<p>Você pode usar <strong>negrito</strong>, <em>itálico</em>, e <code>código inline</code>.</p>\n<h3>Lista de Recursos</h3>\n<ul>\n<li>Markdown simples</li>\n<li>Frontmatter YAML</li>\n<li>Syntax highlighting</li>\n<li>Imagens responsivas</li>\n<li>Tags e categorias</li>\n</ul>\n<h2>Conclusão</h2>\n<p>Markdown torna a escrita de posts muito mais simples e focada no conteúdo!</p>\n"
+  }
+]
