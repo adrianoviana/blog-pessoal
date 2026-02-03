@@ -245,7 +245,7 @@ img {
 }
 
 .newsletter-image {
-  margin: var(--spacing-md) auto var(--spacing-sm);
+  margin: var(--spacing-sm) auto var(--spacing-xs);
   max-width: 180px;
 }
 
