@@ -56,6 +56,11 @@ function highlightActiveNav() {
   const navLinks = document.querySelectorAll('.nav-menu a');
 
   navLinks.forEach(link => {
+    // Skip anchor links (like #youtube)
+    if (link.getAttribute('href').startsWith('#')) {
+      return;
+    }
+
     const linkPath = new URL(link.href).pathname;
 
     // Remove active class from all links
