@@ -245,13 +245,14 @@ img {
 }
 
 .newsletter-image {
-  margin: var(--spacing-xl) auto var(--spacing-lg);
-  max-width: 400px;
+  margin: var(--spacing-md) auto var(--spacing-sm);
+  max-width: 180px;
 }
 
 .newsletter-image img {
   width: 100%;
   height: auto;
+  opacity: 0.8;
 }
 
 /* ========================================
