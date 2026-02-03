@@ -20,39 +20,35 @@ function validateEmail(email) {
 }
 
 async function handleNewsletterSubmit(email) {
-  // TODO: Integrar com sua plataforma de newsletter
-  // Opções: Substack, Mailchimp, ConvertKit, etc.
+  // Integração com Beehiiv
+  // Nota: O Beehiiv normalmente usa iframe embed que já está integrado nas páginas
+  // Este código é um fallback caso você queira usar formulários customizados
 
-  // Exemplo de integração com API customizada:
-  /*
   try {
-    const response = await fetch('SEU_ENDPOINT_API', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email }),
-    });
+    // O Beehiiv geralmente não expõe uma API pública direta
+    // A forma recomendada é usar o iframe embed fornecido por eles
+    // Este é um placeholder caso você configure um webhook/API customizado
 
-    if (response.ok) {
-      showMessage('Obrigado por se inscrever! Verifique seu email para confirmar.', 'success');
-      document.getElementById('newsletter-form').reset();
-    } else {
-      showMessage('Erro ao se inscrever. Por favor, tente novamente.', 'error');
-    }
+    const beehiivPublicationId = 'adriano-newsletter'; // Seu ID de publicação
+
+    // Por enquanto, redireciona para a página de inscrição do Beehiiv
+    // Você pode substituir isso por uma integração via Zapier/Make ou webhook
+    console.log('Newsletter signup attempt:', email);
+
+    // Alternativa 1: Redirecionar para página de inscrição
+    // window.location.href = `https://adriano-newsletter.beehiiv.com/subscribe?email=${encodeURIComponent(email)}`;
+
+    // Alternativa 2: Mostrar mensagem para usar o embed
+    showMessage('Use o formulário embed do Beehiiv acima para se inscrever.', 'success');
+
+    // Reset form
+    const forms = document.querySelectorAll('.newsletter-form');
+    forms.forEach(form => form.reset());
+
   } catch (error) {
+    console.error('Newsletter signup error:', error);
     showMessage('Erro ao se inscrever. Por favor, tente novamente.', 'error');
   }
-  */
-
-  // Por enquanto, apenas mostra mensagem de sucesso
-  // Substitua com sua integração real
-  console.log('Newsletter signup:', email);
-  showMessage('Obrigado! Em breve você receberá um email de confirmação.', 'success');
-
-  // Reset form
-  const forms = document.querySelectorAll('.newsletter-form');
-  forms.forEach(form => form.reset());
 }
 
 // Event Listeners para todos os formulários de newsletter na página
