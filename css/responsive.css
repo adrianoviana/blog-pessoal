@@ -21,12 +21,10 @@
     top: 100%;
     left: 0;
     right: 0;
-    background-color: rgba(10, 10, 15, 0.98);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: var(--color-background);
     flex-direction: column;
     padding: var(--spacing-md);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
     border-bottom: 1px solid var(--color-border);
     transform: translateY(-100%);
     opacity: 0;
