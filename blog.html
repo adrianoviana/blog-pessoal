@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aprenda desenvolvimento de software com Adriano Viana. Receba insights práticos sobre desenvolvimento web, arquitetura de software e as melhores práticas da indústria.">
+    <meta name="description" content="Artigos sobre desenvolvimento de software, arquitetura de sistemas, boas práticas de programação e tecnologia por Adriano Viana.">
     <meta name="author" content="Adriano Viana">
-    <meta name="keywords" content="desenvolvimento web, javascript, react, node.js, spring boot, programação, software engineering">
+    <meta name="keywords" content="blog, desenvolvimento web, javascript, programação, tutoriais, artigos técnicos">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.adrianoviana.com.br/">
-    <meta property="og:title" content="Adriano Viana - Desenvolvimento de Software">
-    <meta property="og:description" content="Aprenda desenvolvimento de software com conteúdo de qualidade. Newsletter semanal com insights práticos sobre desenvolvimento web e arquitetura.">
+    <meta property="og:url" content="https://www.adrianoviana.com.br/blog.html">
+    <meta property="og:title" content="Blog - Adriano Viana">
+    <meta property="og:description" content="Artigos sobre desenvolvimento de software, arquitetura de sistemas e boas práticas de programação.">
     <meta property="og:image" content="https://www.adrianoviana.com.br/assets/images/og-image.jpg">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.adrianoviana.com.br/">
-    <meta name="twitter:title" content="Adriano Viana - Desenvolvimento de Software">
-    <meta name="twitter:description" content="Aprenda desenvolvimento de software com conteúdo de qualidade. Newsletter semanal com insights práticos sobre desenvolvimento web e arquitetura.">
+    <meta name="twitter:url" content="https://www.adrianoviana.com.br/blog.html">
+    <meta name="twitter:title" content="Blog - Adriano Viana">
+    <meta name="twitter:description" content="Artigos sobre desenvolvimento de software, arquitetura de sistemas e boas práticas de programação.">
     <meta name="twitter:image" content="https://www.adrianoviana.com.br/assets/images/og-image.jpg">
 
-    <title>Adriano Viana - Desenvolvimento de Software</title>
+    <title>Blog - Adriano Viana</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/images/favicon.png">
@@ -44,10 +44,10 @@
                 <a href="/">Adriano Viana</a>
             </div>
             <ul class="nav-menu">
-                <li><a href="/" class="active">Home</a></li>
-                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog.html" class="active">Blog</a></li>
                 <li><a href="/about.html">Sobre</a></li>
-                <li><a href="#youtube">YouTube</a></li>
+                <li><a href="/#youtube">YouTube</a></li>
             </ul>
             <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
                 <span></span>
@@ -59,20 +59,29 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Newsletter Hero Section -->
-        <section class="hero-newsletter">
+        <!-- Blog Header -->
+        <section class="blog-header">
             <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        Aprenda Desenvolvimento de Software com Conteúdo de Qualidade
-                    </h1>
-                    <p class="hero-subtitle">
-                        Receba insights práticos sobre desenvolvimento web, arquitetura de software
-                        e as melhores práticas da indústria direto no seu email.
+                <h1>Blog</h1>
+                <p class="blog-description">
+                    Artigos sobre desenvolvimento de software, arquitetura e boas práticas
+                </p>
+            </div>
+        </section>
+
+        <!-- Blog Content -->
+        <section class="blog-content">
+            <div class="container">
+                <!-- Empty State (mostrado inicialmente) -->
+                <div class="blog-empty-state">
+                    <h2>Em Breve!</h2>
+                    <p>
+                        Estou preparando conteúdo de qualidade para você.
+                        Inscreva-se na newsletter para ser notificado quando eu publicar novos artigos.
                     </p>
 
                     <!-- Newsletter Form -->
-                    <div class="newsletter-form-wrapper">
+                    <div class="newsletter-form-wrapper" style="margin-top: 2rem;">
                         <form id="newsletter-form" class="newsletter-form" method="POST">
                             <div class="form-group">
                                 <input
@@ -95,85 +104,41 @@
                         <!-- Success/Error Messages -->
                         <div id="form-message" class="form-message" style="display: none;"></div>
                     </div>
-
-                    <!-- Social Proof -->
-                    <div class="hero-social-proof">
-                        <p>Junte-se aos desenvolvedores que já se inscreveram</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- YouTube Section -->
-        <section id="youtube" class="section-youtube">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Vídeos no YouTube</h2>
-                    <p>Tutoriais práticos e discussões sobre desenvolvimento de software</p>
                 </div>
 
-                <div class="youtube-content">
-                    <!-- YouTube CTA -->
-                    <div class="youtube-cta">
-                        <p style="margin-bottom: 1.5rem; font-size: 1.125rem; color: var(--color-secondary);">
-                            Acesse meu canal no YouTube para acompanhar tutoriais em vídeo,
-                            discussões técnicas e conteúdo sobre desenvolvimento de software.
-                        </p>
-                        <a href="#" target="_blank" class="btn-youtube" rel="noopener noreferrer">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                            Visite o Canal
-                        </a>
-                    </div>
-
-                    <!-- Alternative: Embedded video (uncomment and add your video ID) -->
+                <!-- Blog Posts Grid (oculto inicialmente - remova o style quando adicionar posts) -->
+                <div class="blog-grid" style="display: none;">
+                    <!-- Post Card Template - Exemplo de como adicionar posts futuros -->
                     <!--
-                    <div class="video-embed">
-                        <iframe
-                            src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-                            title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
+                    <article class="post-card">
+                        <a href="/blog/seu-post-slug.html" class="post-card-link">
+                            <div class="post-card-image">
+                                <img src="/assets/images/posts/post-thumbnail.jpg" alt="Título do Post" loading="lazy">
+                            </div>
+                            <div class="post-card-content">
+                                <div class="post-meta">
+                                    <time datetime="2026-02-03">03 Fev 2026</time>
+                                    <span class="post-read-time">5 min de leitura</span>
+                                </div>
+                                <h2 class="post-title">Título do Seu Post</h2>
+                                <p class="post-excerpt">
+                                    Uma breve descrição do conteúdo do post para atrair leitores
+                                    e dar uma ideia do que eles vão encontrar no artigo completo.
+                                </p>
+                                <div class="post-tags">
+                                    <span class="tag">JavaScript</span>
+                                    <span class="tag">React</span>
+                                    <span class="tag">Web Development</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
                     -->
-                </div>
-            </div>
-        </section>
 
-        <!-- Optional: Featured Content Section -->
-        <!--
-        <section class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Conteúdo em Destaque</h2>
-                    <p>Explore os tópicos mais populares</p>
-                </div>
-                <div class="blog-grid">
-                    <div class="post-card">
-                        <div class="post-card-content">
-                            <h3>Desenvolvimento Web</h3>
-                            <p>Aprenda as melhores práticas de desenvolvimento web moderno.</p>
-                        </div>
-                    </div>
-                    <div class="post-card">
-                        <div class="post-card-content">
-                            <h3>Arquitetura de Software</h3>
-                            <p>Descubra padrões e princípios de arquitetura escalável.</p>
-                        </div>
-                    </div>
-                    <div class="post-card">
-                        <div class="post-card-content">
-                            <h3>Boas Práticas</h3>
-                            <p>Melhore a qualidade do seu código com técnicas comprovadas.</p>
-                        </div>
-                    </div>
+                    <!-- Adicione mais post cards aqui conforme criar novos artigos -->
                 </div>
             </div>
         </section>
-        -->
     </main>
 
     <!-- Footer -->
