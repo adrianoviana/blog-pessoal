@@ -229,7 +229,7 @@ img {
 .hero-subtitle {
   font-size: var(--font-size-lg);
   color: var(--color-secondary);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-sm);
   line-height: var(--line-height-relaxed);
 }
 
@@ -245,8 +245,8 @@ img {
 }
 
 .newsletter-image {
-  margin: var(--spacing-sm) auto var(--spacing-xs);
-  max-width: 180px;
+  margin: var(--spacing-md) auto var(--spacing-md);
+  max-width: 280px;
 }
 
 .newsletter-image img {
@@ -262,6 +262,7 @@ img {
 .newsletter-form-wrapper {
   max-width: 600px;
   margin: 0 auto;
+  margin-top: 0;
 }
 
 .newsletter-form {
