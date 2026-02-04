@@ -60,7 +60,9 @@ function createPostCard(post) {
 
 // Formatar data
 function formatDate(dateString) {
-  const date = new Date(dateString);
+  // Parse a data manualmente para evitar problemas de timezone
+  const [year, month, day] = dateString.split('-').map(Number);
+  const date = new Date(year, month - 1, day);
   return date.toLocaleDateString('pt-BR', {
     day: '2-digit',
     month: 'short',
