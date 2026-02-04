@@ -168,7 +168,8 @@ function getPostTemplate(post) {
 
 // Formatar data
 function formatDate(dateString) {
-  const date = new Date(dateString);
+  // Adiciona 'T00:00:00' para forçar interpretação como horário local, não UTC
+  const date = new Date(dateString + 'T00:00:00');
   return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
@@ -177,6 +178,41 @@ function estimateReadTime(content) {
   const wordsPerMinute = 200;
   const words = content.split(/\s+/).length;
   return Math.ceil(words / wordsPerMinute);
+}
+
+// Extrair título do conteúdo markdown
+function extractTitleFromContent(content) {
+  const lines = content.split('\n');
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('# ')) {
+      return trimmed.substring(2).trim();
+    }
+  }
+  return 'Sem título';
+}
+
+// Extrair excerpt do conteúdo markdown
+function extractExcerptFromContent(content) {
+  // Remove o título (primeiro h1)
+  const withoutTitle = content.replace(/^#\s+.+$/m, '').trim();
+
+  // Pega o primeiro parágrafo significativo (ignora linhas vazias)
+  const lines = withoutTitle.split('\n');
+  for (const line of lines) {
+    const trimmed = line.trim();
+    // Ignora linhas vazias, headers, e markdown especial
+    if (trimmed && !trimmed.startsWith('#') && !trimmed.startsWith('---') && !trimmed.startsWith('*')) {
+      // Remove markdown bold/italic
+      const cleaned = trimmed.replace(/\*\*/g, '').replace(/\*/g, '');
+      // Limita a 200 caracteres
+      if (cleaned.length > 200) {
+        return cleaned.substring(0, 197) + '...';
+      }
+      return cleaned;
+    }
+  }
+  return 'Clique para ler mais...';
 }
 
 // Processar posts
@@ -192,11 +228,15 @@ function buildPosts() {
     const slug = filename.replace('.md', '');
     const htmlContent = marked(content);
 
+    // Extrair title e excerpt do conteúdo se não existirem no frontmatter
+    const title = data.title || extractTitleFromContent(content);
+    const excerpt = data.excerpt || extractExcerptFromContent(content);
+
     const post = {
       slug,
-      title: data.title,
+      title,
       date: data.date,
-      excerpt: data.excerpt,
+      excerpt,
       tags: data.tags || [],
       image: data.image || '/assets/images/default-post.jpg',
       content: htmlContent
