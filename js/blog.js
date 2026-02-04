@@ -1,7 +1,7 @@
 // Carregar e exibir posts do blog
 async function loadBlogPosts() {
   try {
-    const response = await fetch('/posts.json');
+    const response = await fetch('/posts.json?v=' + Date.now());
     const posts = await response.json();
 
     if (posts.length === 0) {

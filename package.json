@@ -4,16 +4,23 @@
   "description": "Blog pessoal de Adriano Viana com posts em Markdown",
   "scripts": {
     "build": "node build-posts.js",
-    "build:watch": "nodemon --watch posts -e md --exec 'node build-posts.js'"
+    "build:watch": "nodemon --watch posts -e md --exec 'node build-posts.js'",
+    "dev": "concurrently \"nodemon --watch posts -e md --exec 'node build-posts.js'\" \"live-server --port=8080 --host=localhost --no-browser --watch=blog,js,posts.json,index.html,blog.html\""
   },
-  "keywords": ["blog", "markdown", "static-site"],
+  "keywords": [
+    "blog",
+    "markdown",
+    "static-site"
+  ],
   "author": "Adriano Viana",
   "license": "MIT",
   "dependencies": {
-    "marked": "^11.1.1",
-    "gray-matter": "^4.0.3"
+    "gray-matter": "^4.0.3",
+    "marked": "^11.1.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
+    "concurrently": "^9.2.1",
+    "live-server": "^1.2.2",
+    "nodemon": "^3.1.11"
   }
 }

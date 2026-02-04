@@ -75,8 +75,8 @@
         <!-- Blog Content -->
         <section class="blog-content">
             <div class="container">
-                <!-- Empty State (mostrado inicialmente) -->
-                <div class="blog-empty-state">
+                <!-- Empty State (mostrado quando não houver posts) -->
+                <div class="blog-empty-state" style="display: none;">
                     <h2>Em Breve!</h2>
                     <p>
                         Estou preparando conteúdo de qualidade para você.
@@ -96,36 +96,9 @@
                     </div>
                 </div>
 
-                <!-- Blog Posts Grid (oculto inicialmente - remova o style quando adicionar posts) -->
-                <div class="blog-grid" style="display: none;">
-                    <!-- Post Card Template - Exemplo de como adicionar posts futuros -->
-                    <!--
-                    <article class="post-card">
-                        <a href="/blog/seu-post-slug.html" class="post-card-link">
-                            <div class="post-card-image">
-                                <img src="/assets/images/posts/post-thumbnail.jpg" alt="Título do Post" loading="lazy">
-                            </div>
-                            <div class="post-card-content">
-                                <div class="post-meta">
-                                    <time datetime="2026-02-03">03 Fev 2026</time>
-                                    <span class="post-read-time">5 min de leitura</span>
-                                </div>
-                                <h2 class="post-title">Título do Seu Post</h2>
-                                <p class="post-excerpt">
-                                    Uma breve descrição do conteúdo do post para atrair leitores
-                                    e dar uma ideia do que eles vão encontrar no artigo completo.
-                                </p>
-                                <div class="post-tags">
-                                    <span class="tag">JavaScript</span>
-                                    <span class="tag">React</span>
-                                    <span class="tag">Web Development</span>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                    -->
-
-                    <!-- Adicione mais post cards aqui conforme criar novos artigos -->
+                <!-- Blog Posts Grid (carregado dinamicamente via JavaScript) -->
+                <div class="blog-grid">
+                    <!-- Posts serão inseridos aqui pelo blog.js -->
                 </div>
             </div>
         </section>
