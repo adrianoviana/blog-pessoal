@@ -1,5 +1,20 @@
 [
   {
+    "slug": "modo-agente-github-copilot",
+    "title": "Modo Agente Github Copilot - Guia Completo",
+    "date": "2026-02-06",
+    "excerpt": "Descubra como o novo modo Agente do GitHub Copilot pode revolucionar sua forma de programar, automatizando tarefas complexas enquanto você mantém o controle total do código.",
+    "tags": [
+      "IA",
+      "Programação",
+      "GitHub Copilot",
+      "Tutorial",
+      "Vídeo"
+    ],
+    "image": "/assets/images/posts/github-copilot-cover.jpg",
+    "content": "<h1>Modo Agente Github Copilot - Guia Completo</h1>\n<p>Neste vídeo, mostro como usar o novo modo Agente do GitHub Copilot para automatizar tarefas complexas de programação enquanto você mantém o controle total do código.</p>\n<div class=\"video-container\">\n  <iframe src=\"https://www.youtube.com/embed/J520tu4dd9o\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n\n<hr>\n<p><strong>Quer receber mais conteúdo prático sobre IA e programação?</strong> Assine minha newsletter abaixo!</p>\n"
+  },
+  {
     "slug": "o-que-ai-native-realmente-significa",
     "title": "O que 'AI-Native' realmente significa?",
     "date": "2026-02-04",
