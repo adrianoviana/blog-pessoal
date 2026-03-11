@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node build-posts.js",
     "build:watch": "nodemon --watch posts -e md --exec 'node build-posts.js'",
-    "dev": "concurrently \"nodemon --watch posts -e md --exec 'node build-posts.js'\" \"live-server --port=8080 --host=localhost --no-browser --watch=blog,js,posts.json,index.html,blog.html\""
+    "dev": "concurrently \"nodemon --watch posts -e md --exec 'node build-posts.js'\" \"browser-sync start --server --port 8080 --files 'blog,js,css,posts.json,*.html' --no-open\""
   },
   "keywords": [
     "blog",
@@ -19,8 +19,8 @@
     "marked": "^11.1.1"
   },
   "devDependencies": {
+    "browser-sync": "^3.0.4",
     "concurrently": "^9.2.1",
-    "live-server": "^1.2.2",
     "nodemon": "^3.1.11"
   }
 }
