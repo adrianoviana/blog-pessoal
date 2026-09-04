@@ -52,7 +52,7 @@ function getPostTemplate(post) {
   <meta name="twitter:description" content="${post.excerpt}">
   <meta name="twitter:image" content="https://www.adrianoviana.com.br${post.image}">
   <title>${post.title} — Adriano Viana</title>
-  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
