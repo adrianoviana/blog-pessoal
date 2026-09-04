@@ -5,6 +5,10 @@ excerpt: "Testei 50+ Claude Skills nos últimos 2 meses. Essas 5 valem a pena. N
 tags: ["Claude Code", "Claude Skills", "IA", "Produtividade", "Tutorial", "Vídeo"]
 image: "/assets/images/posts/claude-skills-review-cover.jpg"
 videoUrl: "https://www.youtube.com/watch?v=elezyNTdDME"
+level: 4
+order: 2
+minutes: 11
+video: elezyNTdDME
 ---
 
 # Testei 50+ Claude Skills. Essas 5 Valem a Pena.

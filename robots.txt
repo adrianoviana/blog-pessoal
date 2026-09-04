@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 
+Disallow: /kit/downloads/
+
 Sitemap: https://www.adrianoviana.com.br/sitemap.xml

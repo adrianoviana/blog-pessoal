@@ -5,6 +5,10 @@ excerpt: "Descubra como o novo modo Agente do GitHub Copilot pode revolucionar s
 tags: ["IA", "Programação", "GitHub Copilot", "Tutorial", "Vídeo"]
 image: "/assets/images/posts/github-copilot-cover.jpg"
 videoUrl: "https://www.youtube.com/watch?v=J520tu4dd9o"
+level: 2
+order: 1
+minutes: 10
+video: J520tu4dd9o
 ---
 
 # Modo Agente Github Copilot - Guia Completo

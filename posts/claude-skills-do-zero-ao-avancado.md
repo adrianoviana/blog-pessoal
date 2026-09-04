@@ -5,6 +5,10 @@ excerpt: "Aprenda a usar Claude Skills para evitar AI Slop e escrever código de
 tags: ["IA", "Claude", "Programação", "Tutorial", "Vídeo"]
 image: "/assets/images/posts/claude-skills-cover.jpg"
 videoUrl: "https://www.youtube.com/watch?v=220T91jXjys"
+level: 4
+order: 1
+minutes: 12
+video: 220T91jXjys
 ---
 
 # Claude Skills: Do Zero ao Avançado (Evite AI Slop e Escreva Melhor)

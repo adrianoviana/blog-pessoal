@@ -30,19 +30,23 @@ date: "2026-02-03"
 excerpt: "Breve descrição do post que aparecerá na listagem"
 tags: ["javascript", "tutorial", "web"]
 image: "/assets/images/post-image.jpg"
+level: 1
+order: 1
+minutes: 12
+video: "ID-do-YouTube"
 ---
 
 # Título do Post
 
 Conteúdo do seu post em Markdown...
 
+## Callout "Onde isso quebra"
+
+> **Onde isso quebra.** Se a reunião tiver mais de uma hora, o resumo perde as decisões do final. Divida a transcrição em dois blocos.
+
 ## Seção 1
 
 Texto aqui...
-
-## Seção 2
-
-Mais conteúdo...
 ```
 
 ### 4. Gerar HTML dos Posts
@@ -81,10 +85,9 @@ blog-pessoal/
 ├── assets/
 │   └── images/        # Imagens dos posts
 ├── js/
-│   └── blog.js        # Script para carregar posts
+│   └── site.js        # Prova social + trilha + menu
 ├── build-posts.js     # Script de build
 ├── posts.json         # Lista de posts (gerado)
-└── blog.html          # Página de listagem
 ```
 
 ## Recursos Markdown Suportados
@@ -122,3 +125,14 @@ git push origin master
 - **Gray Matter**: Parse de frontmatter YAML
 - **Prism.js**: Syntax highlighting
 - **GitHub Pages**: Hospedagem estática
+
+## Trilha (home)
+
+- `level` (1–4): posição na trilha da home
+  - 1: A base
+  - 2: Uma tarefa real do começo ao fim
+  - 3: Onde isso quebra
+  - 4: Para quem quer ir além
+- `order`: ordem dentro do nível
+- `minutes`: tempo de leitura/vídeo (soma por nível na home)
+- `video`: ID do YouTube, se o post for um vídeo (exibe player no post e marca como "vídeo" na trilha)

@@ -4,6 +4,9 @@ date: "2026-02-03"
 excerpt: "Guia prático para iniciantes: do download do Cursor até criar sua primeira página web com ajuda de IA. Você só precisa de um computador."
 tags: ["IA", "Programação", "Cursor", "Tutorial"]
 image: "/assets/images/posts/programar-ia-cover.jpg"
+level: 1
+order: 1
+minutes: 12
 ---
 
 # Como Começar a Programar com IA: Do Zero ao Seu Primeiro App

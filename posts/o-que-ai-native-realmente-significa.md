@@ -4,6 +4,9 @@ date: "2026-02-04"
 excerpt: "Se sua arquitetura quebra quando você troca de modelo de IA, você não é AI-Native. Você está acoplado a um vendor — e vai pagar caro por isso. Entenda os 3 pilares de uma arquitetura verdadeiramente AI-Native."
 tags: ["IA","Arquitetura","AI-Native","Cloud"]
 image: "/assets/images/posts/o-que-ai-native-cover.jpg"
+level: 3
+order: 1
+minutes: 9
 ---
 
 # O que "AI-Native" realmente significa? 
