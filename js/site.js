@@ -59,6 +59,12 @@ const TRAIL = [
         url: 'https://adriano-newsletter.beehiiv.com/p/o-m-todo-que-combina-duas-ias-pra-nunca-mais-construir-em-cima-de-inven-o',
         kind: 'artigo · vídeo',
         minutes: 2
+      },
+      {
+        title: 'Sua ata vira nota morta em duas semanas',
+        url: 'https://adriano-newsletter.beehiiv.com/p/sua-ata-vira-nota-morta-em-duas-semanas',
+        kind: 'artigo · vídeo',
+        minutes: 6
       }
     ]
   },
