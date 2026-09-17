@@ -99,6 +99,12 @@ const TRAIL = [
         minutes: 5
       },
       {
+        title: '10 horas por semana de volta',
+        url: 'https://adriano-newsletter.beehiiv.com/p/5-tarefas-que-eu-parei-de-fazer-na-m-o',
+        kind: 'artigo · vídeo',
+        minutes: 8
+      },
+      {
         title: 'O script que orquestra até 1.000 agentes sozinho',
         url: 'https://adriano-newsletter.beehiiv.com/p/o-script-que-orquestra-at-1-000-agentes-sozinho',
         kind: 'artigo',
