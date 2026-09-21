@@ -22,7 +22,7 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 }
 
 const SITE = {
-  newsletterSubscribers: 292,
+  newsletterSubscribers: 296,
   youtubeSubscribers: 5407
 };
 const fmt = n => n.toLocaleString('pt-BR');

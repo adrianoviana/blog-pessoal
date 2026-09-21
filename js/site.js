@@ -1,6 +1,6 @@
 // Números de prova social: atualize aqui e em nenhum outro lugar.
 const SITE = {
-  newsletterSubscribers: 292,
+  newsletterSubscribers: 296,
   youtubeSubscribers: 5407,
   newsletterUrl: 'https://adriano-newsletter.beehiiv.com/',
   youtubeUrl: 'https://www.youtube.com/@adriano_viana',
