@@ -109,6 +109,12 @@ const TRAIL = [
         url: 'https://adriano-newsletter.beehiiv.com/p/o-script-que-orquestra-at-1-000-agentes-sozinho',
         kind: 'artigo',
         minutes: 4
+      },
+      {
+        title: 'Seu agente começa rápido e termina lento',
+        url: 'https://adriano-newsletter.beehiiv.com/p/seu-agente-come-a-r-pido-e-termina-lento',
+        kind: 'artigo · vídeo',
+        minutes: 8
       }
     ]
   }
