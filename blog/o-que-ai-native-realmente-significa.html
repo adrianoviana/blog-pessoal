@@ -6,6 +6,7 @@
   <meta name="description" content="Se sua arquitetura quebra quando você troca de modelo de IA, você não é AI-Native. Você está acoplado a um vendor — e vai pagar caro por isso. Entenda os 3 pilares de uma arquitetura verdadeiramente AI-Native.">
   <meta name="author" content="Adriano Viana">
   <meta name="keywords" content="IA, Arquitetura, AI-Native, Cloud">
+  <link rel="canonical" href="https://www.adrianoviana.com.br/blog/o-que-ai-native-realmente-significa.html">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://www.adrianoviana.com.br/blog/o-que-ai-native-realmente-significa.html">
   <meta property="og:title" content="O que 'AI-Native' realmente significa?">
@@ -21,22 +22,38 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/normalize.css?v=4">
-  <link rel="stylesheet" href="/css/main.css?v=5">
+  <link rel="stylesheet" href="/css/main.css?v=6">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJ622QQBEJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FJ622QQBEJ');
+  </script>
   <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
 </head>
 <body>
+  <div class="promo-bar">
+    <span class="promo-tag">Parceria</span>YouMind: 340+ modelos de IA em um só lugar, com 50% off no mensal. <a href="/youmind.html" data-track="promo_youmind">Ver desconto →</a>
+  </div>
+
   <header class="site-header">
-    <nav class="nav-container">
-      <div class="nav-brand"><a href="/">@adriano_viana</a></div>
+    <nav class="nav-container" aria-label="Principal">
+      <div class="nav-brand"><a href="/"><img src="/assets/images/profile.jpg" alt="" width="30" height="30">@adriano_viana</a></div>
       <ul class="nav-menu">
-        <li><a href="/">Início</a></li>
         <li><a href="/#trilha">Trilha</a></li>
         <li><a href="/kit.html">Kit grátis</a></li>
+        <li><a href="/parcerias.html">Parcerias</a></li>
         <li><a href="/about.html">Sobre</a></li>
-        <li><a href="https://www.youtube.com/@adriano_viana" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+        <li><a href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe">YouTube ↗</a></li>
       </ul>
-      <button class="mobile-menu-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-sm" href="#assinar" data-track="nav_assinar">Assinar<span class="nav-cta-extra"> grátis</span></a>
+        <button class="mobile-menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
   </header>
 
@@ -139,8 +156,15 @@
           <p>Se ajudou, encaminhe para um colega que ainda faz isso na mão. É assim que a Behind the Prompt cresce.</p>
           <p>Novo por aqui? Assine abaixo e pegue o <a href="/kit.html">Kit inicial de skills</a> no e-mail de boas-vindas. E me acompanhe no <a href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer">X</a> e no <a href="https://www.youtube.com/@adriano_viana" target="_blank" rel="noopener noreferrer">YouTube</a>.</p>
         </div>
-        <div class="newsletter-form-wrapper" style="margin-top: var(--sp-3)">
-          <iframe src="https://subscribe-forms.beehiiv.com/5451f253-f9a8-4521-a2ca-dd4df40e6e7f" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" title="Assinar a newsletter Behind the Prompt"></iframe>
+        <div class="signup" id="assinar" style="margin-top: var(--sp-3)">
+          <p class="signup-title">Receba a próxima edição + o Kit inicial de skills</p>
+          <div class="newsletter-form-wrapper">
+            <iframe src="https://subscribe-forms.beehiiv.com/5451f253-f9a8-4521-a2ca-dd4df40e6e7f" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" title="Assinar a newsletter Behind the Prompt"></iframe>
+          </div>
+          <p class="signup-note mono">Grátis · uma edição por semana · cancele com um clique</p>
+        </div>
+        <div class="post-partner">
+          <p><strong>Ferramenta que eu uso:</strong> YouMind, com ChatGPT, Claude, Gemini e 340+ modelos em um só workspace. 50% off no mensal com meu link. <a href="/youmind.html" data-track="post_youmind">Ver desconto →</a></p>
         </div>
       </div>
     </section>
@@ -148,17 +172,37 @@
 
   <footer class="site-footer">
     <div class="footer-container">
-      <span class="mono">@adriano_viana</span>
-      <div class="footer-links">
-        <a href="https://www.youtube.com/@adriano_viana" target="_blank" rel="noopener noreferrer">YouTube</a>
-        <a href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer">X</a>
-        <a href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://adriano-newsletter.beehiiv.com/" target="_blank" rel="noopener noreferrer">Newsletter</a>
+      <div class="footer-brand">
+        <span class="footer-logo">@adriano_viana</span>
+        <p>Behind the Prompt: tutoriais de IA extremamente práticos para profissionais ocupados.</p>
+        <a class="btn btn-primary btn-sm" href="#assinar" data-track="footer_assinar">Assinar grátis</a>
       </div>
+      <div>
+        <p class="footer-title">Redes</p>
+        <div class="footer-links">
+          <a href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe"><span data-icon="youtube"></span>YouTube</a>
+          <a href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer" data-track="linkedin_follow"><span data-icon="linkedin"></span>LinkedIn</a>
+          <a href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer" data-track="x_follow"><span data-icon="x"></span>X</a>
+          <a href="https://adriano-newsletter.beehiiv.com/" target="_blank" rel="noopener noreferrer" data-track="newsletter_archive"><span data-icon="mail"></span>Edições anteriores</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-title">Site</p>
+        <div class="footer-links">
+          <a href="/#trilha">Trilha</a>
+          <a href="/kit.html">Kit grátis</a>
+          <a href="/parcerias.html">Parcerias</a>
+          <a href="/about.html">Sobre</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="mono">© <span data-year>2026</span> Adriano Viana</span>
+      <span class="mono">Alguns links são de afiliado. <a href="/parcerias.html#transparencia">Como funciona</a>.</span>
     </div>
   </footer>
 
-  <script src="/js/site.js"></script>
+  <script src="/js/site.js?v=6"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 </body>
 </html>
