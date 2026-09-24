@@ -3,28 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Tutoriais de IA extremamente práticos para profissionais ocupados. Uma edição por semana, com prompt pronto para copiar e o ponto onde ele quebra. Assine e receba o Kit inicial de skills.">
+  <meta name="description" content="Tutoriais de IA extremamente práticos para profissionais ocupados. Uma edição por semana, com prompt pronto para copiar e o ponto onde ele quebra. Assine grátis e receba o Kit inicial de skills.">
   <meta name="author" content="Adriano Viana">
+  <link rel="canonical" href="https://www.adrianoviana.com.br/">
 
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Behind the Prompt">
   <meta property="og:url" content="https://www.adrianoviana.com.br/">
   <meta property="og:title" content="Behind the Prompt — Adriano Viana">
-  <meta property="og:description" content="Tutoriais de IA extremamente práticos para profissionais ocupados. Assine e receba o Kit inicial de skills.">
+  <meta property="og:description" content="Tutoriais de IA extremamente práticos para profissionais ocupados. Assine grátis e receba o Kit inicial de skills.">
   <meta property="og:image" content="https://www.adrianoviana.com.br/assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@adriano_viana">
   <meta name="twitter:title" content="Behind the Prompt — Adriano Viana">
-  <meta name="twitter:description" content="Tutoriais de IA extremamente práticos para profissionais ocupados. Assine e receba o Kit inicial de skills.">
+  <meta name="twitter:description" content="Tutoriais de IA extremamente práticos para profissionais ocupados. Assine grátis e receba o Kit inicial de skills.">
   <meta name="twitter:image" content="https://www.adrianoviana.com.br/assets/images/og-image.jpg">
 
-  <title>Behind the Prompt — Adriano Viana</title>
+  <title>Behind the Prompt — Tutoriais práticos de IA | Adriano Viana</title>
   <link rel="icon" type="image/png" href="/assets/images/favicon.png?v=2">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://subscribe-forms.beehiiv.com">
 
   <link rel="stylesheet" href="/css/normalize.css?v=4">
-  <link rel="stylesheet" href="/css/main.css?v=5">
+  <link rel="stylesheet" href="/css/main.css?v=6">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJ622QQBEJ"></script>
   <script>
@@ -34,58 +41,152 @@
     gtag('config', 'G-FJ622QQBEJ');
   </script>
   <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Behind the Prompt",
+        "url": "https://www.adrianoviana.com.br/",
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "Person",
+        "name": "Adriano Viana",
+        "url": "https://www.adrianoviana.com.br/",
+        "image": "https://www.adrianoviana.com.br/assets/images/profile.jpg",
+        "jobTitle": "Master Architect",
+        "worksFor": { "@type": "Organization", "name": "CI&T" },
+        "sameAs": [
+          "https://www.youtube.com/@adriano_viana",
+          "https://x.com/adriano_viana",
+          "https://www.linkedin.com/in/adrianoviana/",
+          "https://adriano-newsletter.beehiiv.com/"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <div class="promo-bar">
+    <span class="promo-tag">Parceria</span>YouMind: 340+ modelos de IA em um só lugar, com 50% off no mensal. <a href="/youmind.html" data-track="promo_youmind">Ver desconto →</a>
+  </div>
+
   <header class="site-header">
-    <nav class="nav-container">
-      <div class="nav-brand"><a href="/">@adriano_viana</a></div>
+    <nav class="nav-container" aria-label="Principal">
+      <div class="nav-brand"><a href="/"><img src="/assets/images/profile.jpg" alt="" width="30" height="30">@adriano_viana</a></div>
       <ul class="nav-menu">
-        <li><a href="/" class="active">Início</a></li>
         <li><a href="#trilha">Trilha</a></li>
         <li><a href="/kit.html">Kit grátis</a></li>
-        <li><a href="/youmind.html">YouMind</a></li>
+        <li><a href="/parcerias.html">Parcerias</a></li>
         <li><a href="/about.html">Sobre</a></li>
-        <li><a href="https://www.youtube.com/@adriano_viana" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+        <li><a href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe">YouTube ↗</a></li>
       </ul>
-      <button class="mobile-menu-toggle" aria-label="Abrir menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-sm" href="#assinar" data-track="nav_assinar">Assinar<span class="nav-cta-extra"> grátis</span></a>
+        <button class="mobile-menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
   </header>
 
   <main>
-    <!-- 01 · Captura -->
-    <section class="hero">
+    <!-- Captura -->
+    <section class="hero hero-home">
+      <div class="container hero-grid">
+        <div>
+          <p class="section-index">Newsletter Behind the Prompt · grátis</p>
+          <h1>Tutoriais de IA extremamente práticos para profissionais ocupados.</h1>
+          <p class="lead">
+            Uma edição por semana, de 7 a 13 minutos. Cada uma com <mark>um prompt pronto para copiar</mark>
+            e o ponto exato onde ele quebra, para você não descobrir isso no meio do trabalho.
+          </p>
+
+          <div class="signup" id="assinar">
+            <p class="signup-title">Receba a próxima edição + o Kit inicial de skills</p>
+            <div class="newsletter-form-wrapper">
+              <iframe
+                src="https://subscribe-forms.beehiiv.com/5451f253-f9a8-4521-a2ca-dd4df40e6e7f"
+                class="beehiiv-embed"
+                data-test-id="beehiiv-embed"
+                frameborder="0"
+                scrolling="no"
+                title="Assinar a newsletter Behind the Prompt">
+              </iframe>
+            </div>
+            <p class="signup-note mono">Grátis · uma edição por semana · cancele com um clique</p>
+          </div>
+
+        </div>
+
+        <aside class="author-card" aria-label="Quem escreve">
+          <div class="author-head">
+            <img src="/assets/images/profile.jpg" alt="Adriano Viana" width="76" height="76">
+            <div>
+              <strong>Adriano Viana</strong>
+              <span class="mono">Master Architect na CI&amp;T · 20+ anos em tecnologia</span>
+            </div>
+          </div>
+          <p>Eu testo as ferramentas no trabalho real e mando só o que funcionou, com o prompt e o limite de cada uma.</p>
+          <ul class="stat-list">
+            <li><span class="stat-num" data-count="youtube">5.407</span><span class="stat-label">inscritos no YouTube</span></li>
+            <li><span class="stat-num" data-count="newsletter">296</span><span class="stat-label">leitores toda semana</span></li>
+            <li><span class="stat-num" data-count="trilha">12</span><span class="stat-label">edições na trilha grátis</span></li>
+          </ul>
+          <div class="author-social">
+            <a class="social-chip" href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe"><span data-icon="youtube"></span>YouTube</a>
+            <a class="social-chip" href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer" data-track="linkedin_follow"><span data-icon="linkedin"></span>LinkedIn</a>
+            <a class="social-chip" href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer" data-track="x_follow"><span data-icon="x"></span>X</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 01 · O que você recebe -->
+    <section id="o-que-voce-recebe" class="section-alt">
       <div class="container">
-        <p class="section-index">01 / 05 · Behind the Prompt</p>
-        <h1>Tutoriais de IA extremamente práticos para profissionais ocupados.</h1>
-        <p class="lead">
-          Uma edição por semana, de 7 a 13 minutos. Cada uma com <mark>um prompt pronto para copiar</mark>
-          e o ponto exato onde ele quebra, para você não descobrir isso no meio do trabalho.
-        </p>
-
-        <div class="newsletter-form-wrapper">
-          <iframe
-            src="https://subscribe-forms.beehiiv.com/5451f253-f9a8-4521-a2ca-dd4df40e6e7f"
-            class="beehiiv-embed"
-            data-test-id="beehiiv-embed"
-            frameborder="0"
-            scrolling="no"
-            title="Assinar a newsletter Behind the Prompt">
-          </iframe>
+        <p class="section-index">01 / 06 · O que chega no seu e-mail</p>
+        <div class="section-header">
+          <h2>Menos teoria sobre IA. Mais tarefa pronta para usar no mesmo dia.</h2>
+        </div>
+        <div class="feature-grid">
+          <div class="feature">
+            <span class="feature-num">→ 01</span>
+            <h3>Prompt pronto para copiar</h3>
+            <p>Cada edição traz um prompt que você cola e usa, sem começar do zero.</p>
+          </div>
+          <div class="feature">
+            <span class="feature-num">→ 02</span>
+            <h3>O ponto onde ele quebra</h3>
+            <p>O limite de cada técnica, antes de ele aparecer no meio do seu trabalho.</p>
+          </div>
+          <div class="feature">
+            <span class="feature-num">→ 03</span>
+            <h3>De 7 a 13 minutos</h3>
+            <p>Uma edição por semana. Cabe no café e não vira mais um e-mail acumulado.</p>
+          </div>
         </div>
 
-        <div class="hero-gift">
-          <p><strong>Parceria YouMind:</strong> 340+ modelos de IA em um só workspace, com 50% off no mensal e 20% off no anual. <a href="/youmind.html">Ver como funciona →</a></p>
-        </div>
-
-        <div class="hero-gift">
-          <p><strong>Ao assinar, você recebe o Kit inicial de skills</strong> no e-mail de boas-vindas: skills prontas para instalar no Claude em cinco passos. <a href="/kit.html">O que vem no kit →</a></p>
-        </div>
-
-        <div class="hero-proof">
-          <span class="mono"><strong data-count="newsletter">296</strong> assinantes na newsletter</span>
-          <span class="mono"><strong data-count="youtube">5.407</strong> inscritos no canal</span>
+        <div class="bonus" id="kit">
+          <div class="bonus-intro">
+            <span class="badge">Bônus de boas-vindas</span>
+            <h3>Kit inicial de skills para o Claude.</h3>
+            <p>Uma skill é um comando <code>/</code> que você chama em qualquer conversa. Em vez de reescrever o mesmo prompt toda semana, você instala uma vez e invoca quando precisa.</p>
+            <p class="mono">Funciona no plano gratuito do Claude. Instala em 5 passos.</p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="#assinar" data-track="kit_cta_home">Quero o kit grátis</a>
+              <a class="link-arrow" href="/kit.html">Ver o kit em detalhe →</a>
+            </div>
+          </div>
+          <ul class="bonus-skills">
+            <li><code>/reuniao-em-acoes</code><span>Transcrição ou anotação de reunião vira decisões, ações com dono e prazo, e pendências.</span></li>
+            <li><code>/briefing-de-uma-pagina</code><span>Relatório, PDF ou thread longa vira uma página para quem decide, com fatos rastreáveis à fonte.</span></li>
+            <li><code>/onde-isso-quebra</code><span>Revisa plano, proposta ou e-mail antes de enviar: premissas escondidas, pontos de falha e veredito.</span></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -93,92 +194,187 @@
     <!-- 02 · Trilha -->
     <section id="trilha">
       <div class="container">
-        <p class="section-index">02 / 05 · Trilha</p>
+        <p class="section-index">02 / 06 · Trilha grátis</p>
         <div class="section-header">
           <h2>Por onde começar, em que ordem, e quanto tempo leva.</h2>
           <p>Um nível por vez. Aplique antes de passar para o próximo. Os tempos são de leitura ou de vídeo, não de prática.</p>
         </div>
         <div id="trilha-root"></div>
-      </div>
-    </section>
-
-    <!-- 03 · Kit -->
-    <section id="kit">
-      <div class="container">
-        <p class="section-index">03 / 05 · Kit inicial de skills</p>
-        <div class="kit-box">
-          <h3>Skills prontas para o Claude, grátis no e-mail de boas-vindas.</h3>
-          <p>Uma skill é um comando <code>/</code> que você chama dentro de qualquer conversa. Em vez de reescrever o mesmo prompt toda semana, você instala uma vez e invoca quando precisa.</p>
-          <ul class="skills-list">
-            <li><code>/reuniao-em-acoes</code> — transcrição ou anotação de reunião vira decisões, ações com dono e prazo, e pendências.</li>
-            <li><code>/briefing-de-uma-pagina</code> — relatório, PDF ou thread longa vira uma página para quem decide, com fatos rastreáveis à fonte.</li>
-            <li><code>/onde-isso-quebra</code> — revisa plano, proposta ou e-mail antes de enviar: premissas escondidas, pontos de falha e veredito.</li>
-          </ul>
-          <ol class="steps">
-            <li><span>Assine a Behind the Prompt no formulário acima.</span></li>
-            <li><span>Abra o e-mail de boas-vindas e baixe os três arquivos <code>.zip</code>.</span></li>
-            <li><span>No Claude, vá em <strong>Personalizar → Skills</strong>.</span></li>
-            <li><span>Clique em <strong>Adicionar skill</strong>, envie um <code>.zip</code> de cada vez e ligue a chave.</span></li>
-            <li><span>Em qualquer chat, digite <code>/</code> e escolha a skill.</span></li>
-          </ol>
-          <p class="mono">Funciona no plano gratuito do Claude. Cada skill traz dentro do arquivo a seção "Onde esta skill quebra".</p>
-          <a class="btn btn-primary" href="/kit.html">Ver o kit em detalhe</a>
+        <div class="section-cta">
+          <p>A próxima edição da trilha chega no seu e-mail.</p>
+          <a class="btn btn-primary" href="#assinar" data-track="trilha_assinar">Assinar grátis</a>
         </div>
       </div>
     </section>
 
-    <!-- 04 · Parceiro -->
-    <section id="youmind">
+    <!-- 03 · Vídeos -->
+    <section id="youtube" class="section-alt">
       <div class="container">
-        <p class="section-index">04 / 05 · Parceria</p>
-        <div class="kit-box">
-          <h3>YouMind: o workspace de IA que eu uso — com desconto.</h3>
-          <p>ChatGPT, Claude, Gemini, DeepSeek, Perplexity e 340+ modelos em um só lugar. Pesquise PDFs, páginas e vídeos do YouTube e gere docs, slides, imagens e páginas web.</p>
-          <ul class="skills-list">
-            <li><strong>50% off</strong> no plano mensal com meu link.</li>
-            <li><strong>20% off</strong> no plano anual com meu link.</li>
-          </ul>
-          <p class="mono">Link afiliado: eu recebo comissão sobre a primeira assinatura, sem custo extra para você. <a href="/youmind.html">Transparência completa</a>.</p>
-          <a class="btn btn-primary" href="https://youmind.com/?ref=W5IZQ9" target="_blank" rel="sponsored nofollow noopener">Testar com desconto</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05 · Vídeos -->
-    <section id="youtube">
-      <div class="container">
-        <p class="section-index">05 / 05 · Canal</p>
+        <p class="section-index">03 / 06 · Canal</p>
         <div class="section-header">
           <h2>É no canal que eu testo isso toda semana.</h2>
+          <p>Tela aberta, ferramenta rodando e o resultado real. <strong data-count="youtube">5.407</strong> pessoas já acompanham.</p>
         </div>
-        <div class="videos-grid">
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/s33_4V2ItDc" title="Vídeo do canal" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="videos-grid" id="videos-root"></div>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe"><span data-icon="youtube"></span>Inscrever no canal</a>
+          <a class="link-arrow" href="https://www.youtube.com/@adriano_viana/videos" target="_blank" rel="noopener noreferrer" data-track="youtube_videos">Ver todos os vídeos →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · Parceria -->
+    <section id="youmind">
+      <div class="container">
+        <p class="section-index">04 / 06 · Parceria</p>
+        <div class="partner">
+          <div class="partner-body">
+            <span class="badge badge-ink">Ferramenta que eu uso</span>
+            <h3>YouMind: ChatGPT, Claude, Gemini e 340+ modelos em um só workspace.</h3>
+            <p>Em vez de assinar cinco ferramentas separadas, você pesquisa, compara e cria no mesmo lugar.</p>
+            <ul class="check-list">
+              <li><span><strong>Pesquise</strong> PDFs, páginas web e vídeos do YouTube.</span></li>
+              <li><span><strong>Compare</strong> respostas de modelos diferentes lado a lado.</span></li>
+              <li><span><strong>Crie</strong> documentos, slides, imagens e páginas web.</span></li>
+            </ul>
+            <a class="link-arrow" href="/youmind.html">Por que eu recomendo →</a>
           </div>
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/lww7iuBLMsY" title="Vídeo do canal" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/nwzk87tCxEA" title="Vídeo do canal" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          <div class="partner-deal">
+            <div class="deal deal-main"><strong>50%</strong><span>off no plano<br>mensal</span></div>
+            <div class="deal"><strong>20%</strong><span>off no plano<br>anual</span></div>
+            <a class="btn btn-primary btn-block" href="https://youmind.com/?ref=W5IZQ9" target="_blank" rel="sponsored nofollow noopener" data-track="youmind_click">Testar com desconto</a>
+            <p class="mono disclosure">Desconto aplicado automaticamente pelo link. Link afiliado: recebo comissão da primeira assinatura, sem custo extra para você. <a href="/parcerias.html#transparencia">Transparência</a>.</p>
           </div>
         </div>
-        <a class="btn" href="https://www.youtube.com/@adriano_viana" target="_blank" rel="noopener noreferrer">Inscrever no canal</a>
+      </div>
+    </section>
+
+    <!-- 05 · Redes -->
+    <section id="redes" class="section-alt">
+      <div class="container">
+        <p class="section-index">05 / 06 · Redes</p>
+        <div class="section-header">
+          <h2>Me acompanhe onde você já está.</h2>
+          <p>Cada canal tem um formato. Escolha o seu, ou todos.</p>
+        </div>
+        <div class="social-grid">
+          <a class="social-card is-primary" href="#assinar" data-track="redes_newsletter">
+            <span data-icon="mail"></span>
+            <span class="social-name">Newsletter</span>
+            <strong>Uma edição por semana</strong>
+            <p>O tutorial completo, com prompt pronto e o ponto onde ele quebra. Com o kit de skills de bônus.</p>
+            <span class="btn btn-primary btn-sm">Assinar grátis</span>
+          </a>
+          <a class="social-card" href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe">
+            <span data-icon="youtube"></span>
+            <span class="social-name">YouTube</span>
+            <strong><span data-count="youtube">5.407</span> inscritos</strong>
+            <p>Os testes em vídeo: a ferramenta rodando na tela, do começo ao resultado.</p>
+            <span class="btn btn-sm">Inscrever-se</span>
+          </a>
+          <a class="social-card" href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer" data-track="linkedin_follow">
+            <span data-icon="linkedin"></span>
+            <span class="social-name">LinkedIn</span>
+            <strong>IA na carreira e na arquitetura</strong>
+            <p>Bastidores de projetos, adoção de IA nas empresas e carreira em tecnologia.</p>
+            <span class="btn btn-sm">Seguir</span>
+          </a>
+          <a class="social-card" href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer" data-track="x_follow">
+            <span data-icon="x"></span>
+            <span class="social-name">X</span>
+            <strong>O que eu estou testando agora</strong>
+            <p>Notas rápidas sobre ferramentas e lançamentos, antes de virarem edição.</p>
+            <span class="btn btn-sm">Seguir</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · Sobre -->
+    <section id="sobre">
+      <div class="container">
+        <p class="section-index">06 / 06 · Quem escreve</p>
+        <div class="about-strip">
+          <img src="/assets/images/profile.jpg" alt="Adriano Viana" loading="lazy" width="200" height="200">
+          <div>
+            <h2>Oi, eu sou o Adriano.</h2>
+            <p>Há mais de 20 anos em tecnologia, hoje sou Master Architect na CI&amp;T, ajudando grandes empresas a colocar IA para trabalhar de verdade. A Behind the Prompt é onde eu devolvo isso em formato curto, para quem não tem tempo a perder com teoria vazia.</p>
+            <ul class="credentials">
+              <li>Master Architect · CI&amp;T</li>
+              <li>20+ anos em TI</li>
+              <li>IA nativa · LLMs &amp; RAG</li>
+            </ul>
+            <a class="link-arrow" href="/about.html">Minha história completa →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="final-section">
+      <div class="container">
+        <div class="final-cta">
+          <div>
+            <p class="section-index">Última chamada, prometo</p>
+            <h2>Uma edição por semana. Um prompt pronto. Grátis.</h2>
+            <p>Assine agora e o Kit inicial de skills chega no e-mail de boas-vindas. Junte-se a <strong data-count="newsletter">296</strong> profissionais que já recebem.</p>
+          </div>
+          <div>
+            <div class="newsletter-form-wrapper">
+              <iframe
+                src="https://subscribe-forms.beehiiv.com/5451f253-f9a8-4521-a2ca-dd4df40e6e7f"
+                class="beehiiv-embed"
+                data-test-id="beehiiv-embed"
+                frameborder="0"
+                scrolling="no"
+                loading="lazy"
+                title="Assinar a newsletter Behind the Prompt">
+              </iframe>
+            </div>
+            <p class="signup-note mono">Grátis · uma edição por semana · cancele com um clique</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
+  <div class="sticky-cta" aria-hidden="false">
+    <p>Kit de skills grátis<span class="mono">ao assinar a newsletter</span></p>
+    <a class="btn btn-primary btn-sm" href="#assinar" data-track="sticky_assinar">Assinar grátis</a>
+  </div>
+
   <footer class="site-footer">
     <div class="footer-container">
-      <span class="mono">@adriano_viana</span>
-      <div class="footer-links">
-        <a href="https://www.youtube.com/@adriano_viana" target="_blank" rel="noopener noreferrer">YouTube</a>
-        <a href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer">X</a>
-        <a href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://adriano-newsletter.beehiiv.com/" target="_blank" rel="noopener noreferrer">Newsletter</a>
+      <div class="footer-brand">
+        <span class="footer-logo">@adriano_viana</span>
+        <p>Behind the Prompt: tutoriais de IA extremamente práticos para profissionais ocupados.</p>
+        <a class="btn btn-primary btn-sm" href="#assinar" data-track="footer_assinar">Assinar grátis</a>
       </div>
+      <div>
+        <p class="footer-title">Redes</p>
+        <div class="footer-links">
+          <a href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe"><span data-icon="youtube"></span>YouTube</a>
+          <a href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer" data-track="linkedin_follow"><span data-icon="linkedin"></span>LinkedIn</a>
+          <a href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer" data-track="x_follow"><span data-icon="x"></span>X</a>
+          <a href="https://adriano-newsletter.beehiiv.com/" target="_blank" rel="noopener noreferrer" data-track="newsletter_archive"><span data-icon="mail"></span>Edições anteriores</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-title">Site</p>
+        <div class="footer-links">
+          <a href="/#trilha">Trilha</a>
+          <a href="/kit.html">Kit grátis</a>
+          <a href="/parcerias.html">Parcerias</a>
+          <a href="/about.html">Sobre</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="mono">© <span data-year>2026</span> Adriano Viana</span>
+      <span class="mono">Alguns links são de afiliado. <a href="/parcerias.html#transparencia">Como funciona</a>.</span>
     </div>
   </footer>
 
-  <script src="/js/site.js"></script>
+  <script src="/js/site.js?v=6"></script>
 </body>
 </html>
