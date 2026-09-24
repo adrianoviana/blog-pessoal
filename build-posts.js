@@ -22,8 +22,8 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 }
 
 const SITE = {
-  newsletterSubscribers: 296,
-  youtubeSubscribers: 5407
+  newsletterSubscribers: '300+',
+  youtubeSubscribers: '5k+'
 };
 const fmt = n => n.toLocaleString('pt-BR');
 
@@ -116,7 +116,7 @@ function getPostTemplate(post) {
     <section class="post-footer">
       <div class="container">
         <div class="boilerplate">
-          <p>Este texto chegou até você porque <strong>${fmt(SITE.newsletterSubscribers)} assinantes</strong> e <strong>${fmt(SITE.youtubeSubscribers)} inscritos no canal</strong> decidiram aprender IA na prática, e mandaram adiante.</p>
+          <p>Este texto chegou até você porque <strong>${SITE.newsletterSubscribers} assinantes</strong> e <strong>${SITE.youtubeSubscribers} inscritos no canal</strong> decidiram aprender IA na prática, e mandaram adiante.</p>
           <p>Se ajudou, encaminhe para um colega que ainda faz isso na mão. É assim que a Behind the Prompt cresce.</p>
           <p>Novo por aqui? Assine abaixo e pegue o <a href="/kit.html">Kit inicial de skills</a> no e-mail de boas-vindas. E me acompanhe no <a href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer">X</a> e no <a href="https://www.youtube.com/@adriano_viana" target="_blank" rel="noopener noreferrer">YouTube</a>.</p>
         </div>

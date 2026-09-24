@@ -1,7 +1,7 @@
 // Números de prova social: atualize aqui e em nenhum outro lugar.
 const SITE = {
-  newsletterSubscribers: 296,
-  youtubeSubscribers: 5407,
+  newsletterSubscribers: '300+',
+  youtubeSubscribers: '5k+',
   newsletterUrl: 'https://adriano-newsletter.beehiiv.com/',
   youtubeUrl: 'https://www.youtube.com/@adriano_viana',
   xUrl: 'https://x.com/adriano_viana'
@@ -126,8 +126,8 @@ const TRAIL = [
 const trailItems = TRAIL.reduce((s, l) => s + l.items.length, 0);
 
 function fillCounts() {
-  document.querySelectorAll('[data-count="newsletter"]').forEach(el => el.textContent = fmt(SITE.newsletterSubscribers));
-  document.querySelectorAll('[data-count="youtube"]').forEach(el => el.textContent = fmt(SITE.youtubeSubscribers));
+  document.querySelectorAll('[data-count="newsletter"]').forEach(el => el.textContent = SITE.newsletterSubscribers);
+  document.querySelectorAll('[data-count="youtube"]').forEach(el => el.textContent = SITE.youtubeSubscribers);
   document.querySelectorAll('[data-count="trilha"]').forEach(el => el.textContent = trailItems);
   document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
 }
