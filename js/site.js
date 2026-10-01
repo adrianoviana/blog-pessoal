@@ -10,9 +10,9 @@ const SITE = {
 // Vídeos da home: os 3 mais recentes do canal. Troque o id e o título
 // quando sair vídeo novo (o primeiro da lista é o mais recente).
 const VIDEOS = [
-  { id: 'CNHTLZFeW6E', title: 'Pare de recomeçar a mesma pesquisa toda semana' },
   { id: 'ad_j0v0eusA', title: 'Mesmo ChatGPT, mesmo plano: 4 viradas de expert' },
-  { id: 's33_4V2ItDc', title: 'Claude Cowork rápido e econômico' }
+  { id: 's33_4V2ItDc', title: 'Claude Cowork rápido e econômico' },
+  { id: 'lww7iuBLMsY', title: '5 automações com o Claude Cowork' }
 ];
 
 const fmt = n => n.toLocaleString('pt-BR');
