@@ -10,9 +10,9 @@ const SITE = {
 // Vídeos da home: os 3 mais recentes do canal. Troque o id e o título
 // quando sair vídeo novo (o primeiro da lista é o mais recente).
 const VIDEOS = [
-  { id: 's33_4V2ItDc', title: 'Claude Cowork rápido e econômico' },
-  { id: 'lww7iuBLMsY', title: '5 automações com o Claude Cowork' },
-  { id: 'nwzk87tCxEA', title: '3 workflows no Gemini Notebook' }
+  { id: 'CNHTLZFeW6E', title: 'Pare de recomeçar a mesma pesquisa toda semana' },
+  { id: 'ad_j0v0eusA', title: 'Mesmo ChatGPT, mesmo plano: 4 viradas de expert' },
+  { id: 's33_4V2ItDc', title: 'Claude Cowork rápido e econômico' }
 ];
 
 const fmt = n => n.toLocaleString('pt-BR');
@@ -87,6 +87,12 @@ const TRAIL = [
         url: 'https://adriano-newsletter.beehiiv.com/p/os-5-prompts-que-cortaram-metade-do-meu-retrabalho-no-claude-code',
         kind: 'artigo · vídeo',
         minutes: 6
+      },
+      {
+        title: 'Escreva menos, anexe mais',
+        url: 'https://adriano-newsletter.beehiiv.com/p/escreva-menos-anexe-mais',
+        kind: 'artigo · vídeo',
+        minutes: 7
       }
     ]
   },
