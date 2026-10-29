@@ -163,6 +163,31 @@ function fillCounts() {
   document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
 }
 
+// Link "Empresas" no menu e no rodapé de todas as páginas (inclusive posts
+// gerados pelo build), sem precisar editar cada HTML. Se a página já tiver
+// o link no HTML, nada é duplicado.
+function ensureEmpresasLinks() {
+  const href = '/empresas.html';
+  const isHere = location.pathname === href;
+
+  const menu = document.querySelector('.nav-menu');
+  if (menu && !menu.querySelector(`a[href="${href}"]`)) {
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="${href}"${isHere ? ' class="active"' : ''}>Empresas</a>`;
+    const ref = menu.querySelector('a[href="/parcerias.html"]');
+    if (ref) menu.insertBefore(li, ref.closest('li')); else menu.appendChild(li);
+  }
+
+  document.querySelectorAll('.footer-links').forEach(box => {
+    const ref = box.querySelector('a[href="/parcerias.html"]');
+    if (!ref || box.querySelector(`a[href="${href}"]`)) return;
+    const a = document.createElement('a');
+    a.href = href;
+    a.textContent = 'Empresas';
+    box.insertBefore(a, ref);
+  });
+}
+
 function renderTrilha() {
   const root = document.querySelector('#trilha-root');
   if (!root) return;
@@ -295,6 +320,7 @@ function initStickyCta() {
 
 document.addEventListener('DOMContentLoaded', () => {
   fillCounts();
+  ensureEmpresasLinks();
   renderTrilha();
   renderVideos();
   renderIcons();

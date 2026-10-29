@@ -30,7 +30,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/normalize.css?v=4">
-  <link rel="stylesheet" href="/css/main.css?v=6">
+  <link rel="stylesheet" href="/css/main.css?v=7">
+
+  <style>
+    /* Formulário de proposta: só esta página usa. */
+    .lead-form { display: grid; gap: var(--sp-2); }
+    .lead-form .form-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--sp-2); }
+    .lead-form label { display: grid; gap: 0.35rem; font-size: var(--fs-sm); font-weight: 600; color: var(--ink); }
+    .lead-form label span.opt { font-weight: 400; color: var(--slate); }
+    .lead-form input, .lead-form select, .lead-form textarea {
+      font: inherit; font-weight: 400; color: var(--ink); background: var(--white);
+      border: 1px solid var(--line); border-radius: var(--radius); padding: 0.65rem 0.75rem; width: 100%;
+    }
+    .lead-form textarea { min-height: 6rem; resize: vertical; }
+    .lead-form input:focus, .lead-form select:focus, .lead-form textarea:focus { outline: 2px solid var(--coral); outline-offset: 1px; border-color: var(--ink); }
+    .lead-status { font-size: var(--fs-sm); color: var(--coral-text); font-weight: 600; margin: 0; }
+    .lead-status:empty { display: none; }
+    #lead-preview { font-family: var(--font-mono); font-size: var(--fs-xs); min-height: 10rem; }
+    @media (max-width: 720px) { .lead-form .form-row { grid-template-columns: 1fr; } }
+  </style>
 
   <script type="application/ld+json">
   {
@@ -89,7 +107,10 @@
         <p class="section-index">Para empresas</p>
         <h1>Seu time usando IA no trabalho de verdade.</h1>
         <p class="lead">Palestras, workshops práticos e programas para times que querem adotar IA <mark>com critério de arquiteto, não com hype</mark>: o que funciona hoje, onde quebra e como usar sem virar bagunça de custo e segurança.</p>
-        <a class="btn btn-primary" href="#contato" data-track="empresas_hero_proposta">Conversar sobre o seu time</a>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#contato" data-track="empresas_hero_proposta">Pedir uma proposta</a>
+          <a class="link-arrow" href="#formatos">Ver os formatos →</a>
+        </div>
       </div>
     </section>
 
@@ -187,7 +208,7 @@
             <li><span>Canal no YouTube com <strong data-count="youtube">5k+</strong> inscritos.</span></li>
             <li><span>Newsletter semanal com <strong data-count="newsletter">300+</strong> assinantes.</span></li>
           </ul>
-          <a class="link-arrow" href="/about.html">Mais sobre mim →</a>
+          <a class="link-arrow" href="https://www.youtube.com/@adriano_viana/videos" target="_blank" rel="noopener noreferrer" data-track="empresas_ver_canal">Veja como eu explico, no canal →</a>
         </div>
       </div>
     </section>
@@ -199,7 +220,7 @@
           <h2>Da primeira mensagem ao time aplicando.</h2>
         </div>
         <ol class="steps">
-          <li><span><strong>Mensagem.</strong> Você me conta o time, o objetivo e o formato que imagina.</span></li>
+          <li><span><strong>Mensagem.</strong> Você preenche o formulário abaixo com o time, o objetivo e o formato que imagina.</span></li>
           <li><span><strong>Conversa de 30 min.</strong> Entendo o nível do time, as ferramentas liberadas na empresa e o que precisa mudar no dia a dia.</span></li>
           <li><span><strong>Proposta de uma página.</strong> Objetivo, roteiro, o que cada participante leva, valor e condições.</span></li>
           <li><span><strong>Entrega.</strong> Palestra, workshop ou programa, com material de apoio para o time.</span></li>
@@ -229,34 +250,74 @@
           </details>
           <details>
             <summary>Quanto custa?</summary>
-            <p>Depende do formato, do tamanho do time e da modalidade. O valor vem na proposta, depois da conversa inicial.</p>
+            <p>Depende do formato, do tamanho do time e da modalidade. O valor e as condições de pagamento vêm na proposta, depois da conversa inicial.</p>
           </details>
           <details>
-            <summary>A empresa emite nota fiscal?</summary>
-            <p>Sim, o serviço é faturado com nota fiscal.</p>
+            <summary>Dá para gravar e usar com quem não pôde participar?</summary>
+            <p>Sim. A gravação para uso interno pode ser incluída na proposta.</p>
           </details>
         </div>
       </div>
     </section>
 
     <section id="contato">
-      <div class="container">
-        <div class="final-cta">
-          <div>
-            <p class="section-index">Contato</p>
-            <h2>Vamos conversar sobre o seu time.</h2>
-            <p>Para eu já chegar na conversa com uma ideia de formato, mande na mensagem:</p>
-            <ul class="check-list">
-              <li><span>Empresa e área do time</span></li>
-              <li><span>Número aproximado de pessoas</span></li>
-              <li><span>O que vocês querem que mude no dia a dia</span></li>
-              <li><span>Formato e data que imaginam</span></li>
-            </ul>
-          </div>
-          <div>
-            <a class="btn btn-primary btn-block" href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer" data-track="empresas_contato_linkedin"><span data-icon="linkedin"></span>Falar comigo no LinkedIn</a>
-            <p class="mono disclosure" style="margin-top: 1rem">Quer ver como eu explico antes? <a href="https://www.youtube.com/@adriano_viana" target="_blank" rel="noopener noreferrer" data-track="empresas_ver_canal">Assista aos vídeos do canal ↗</a></p>
-          </div>
+      <div class="container landing-grid">
+        <div>
+          <p class="section-index">Pedir proposta</p>
+          <h2>Vamos conversar sobre o seu time.</h2>
+          <p class="lead">Preencha em um minuto. Com essas informações eu já chego na conversa com uma sugestão de formato.</p>
+          <ul class="check-list">
+            <li><span>Resposta com horários para uma conversa de 30 min.</span></li>
+            <li><span>Sem compromisso: a proposta só vem depois da conversa.</span></li>
+          </ul>
+          <p class="mono disclosure">Prefere falar direto? <a href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer" data-track="empresas_contato_linkedin">Me chame no LinkedIn ↗</a></p>
+        </div>
+        <div class="brand-card">
+          <form id="lead-form" class="lead-form" novalidate>
+            <div class="form-row">
+              <label>Seu nome<input name="nome" required autocomplete="name"></label>
+              <label>E-mail de trabalho<input name="email" type="email" required autocomplete="email"></label>
+            </div>
+            <div class="form-row">
+              <label>Empresa<input name="empresa" required autocomplete="organization"></label>
+              <label>Cargo <span class="opt">(opcional)</span><input name="cargo" autocomplete="organization-title"></label>
+            </div>
+            <div class="form-row">
+              <label>Formato
+                <select name="formato" required>
+                  <option value="">Escolha</option>
+                  <option>Palestra</option>
+                  <option>Workshop prático</option>
+                  <option>Programa para o time</option>
+                  <option>Ainda não sei</option>
+                </select>
+              </label>
+              <label>Pessoas no time
+                <select name="tamanho" required>
+                  <option value="">Escolha</option>
+                  <option>Até 10</option>
+                  <option>11 a 25</option>
+                  <option>26 a 60</option>
+                  <option>Mais de 60</option>
+                </select>
+              </label>
+            </div>
+            <div class="form-row">
+              <label>Modalidade
+                <select name="modalidade" required>
+                  <option value="">Escolha</option>
+                  <option>Remoto</option>
+                  <option>Presencial</option>
+                  <option>Tanto faz</option>
+                </select>
+              </label>
+              <label>Quando <span class="opt">(opcional)</span><input name="quando" placeholder="ex.: novembro, semana de tecnologia"></label>
+            </div>
+            <label>O que vocês querem que mude no dia a dia?<textarea name="objetivo" required placeholder="ex.: o time de devs tem Copilot liberado, mas quase ninguém usa o modo agente"></textarea></label>
+            <button class="btn btn-primary btn-block" type="submit">Enviar pedido de proposta</button>
+            <p id="lead-status" class="lead-status" role="status" aria-live="polite"></p>
+            <textarea id="lead-preview" readonly hidden aria-label="Sua mensagem"></textarea>
+          </form>
         </div>
       </div>
     </section>
@@ -295,6 +356,84 @@
     </div>
   </footer>
 
-  <script src="/js/site.js?v=6"></script>
+  <script src="/js/site.js?v=8"></script>
+  <script>
+    // Para onde vai o pedido de proposta. Preencha UM canal para receber direto:
+    //   whatsapp: só números, com DDI e DDD. Ex.: '5511999999999'
+    //   email:    ex.: 'contato@adrianoviana.com.br'
+    // Com os dois vazios, a mensagem é copiada e o LinkedIn abre para colar.
+    const CONTATO = {
+      whatsapp: '',
+      email: '',
+      linkedin: 'https://www.linkedin.com/in/adrianoviana/'
+    };
+
+    (function () {
+      const form = document.getElementById('lead-form');
+      if (!form) return;
+      const btn = form.querySelector('button[type="submit"]');
+      const status = document.getElementById('lead-status');
+      const preview = document.getElementById('lead-preview');
+      const canal = CONTATO.whatsapp ? 'whatsapp' : (CONTATO.email ? 'email' : 'linkedin');
+
+      btn.textContent = {
+        whatsapp: 'Enviar pelo WhatsApp',
+        email: 'Enviar por e-mail',
+        linkedin: 'Copiar mensagem e abrir o LinkedIn'
+      }[canal];
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        const d = Object.fromEntries(new FormData(form).entries());
+        const linhas = [
+          'Olá, Adriano! Vim pela página de empresas e quero uma proposta.',
+          '',
+          'Nome: ' + d.nome,
+          'E-mail: ' + d.email,
+          'Empresa: ' + d.empresa + (d.cargo ? ' (' + d.cargo + ')' : ''),
+          'Formato: ' + d.formato,
+          'Pessoas no time: ' + d.tamanho,
+          'Modalidade: ' + d.modalidade,
+          d.quando ? 'Quando: ' + d.quando : null,
+          '',
+          'Objetivo: ' + d.objetivo
+        ];
+        const msg = linhas.filter(l => l !== null).join('\n');
+
+        if (typeof gtag === 'function') {
+          gtag('event', 'empresas_lead_submit', {
+            formato: d.formato,
+            tamanho: d.tamanho,
+            modalidade: d.modalidade,
+            canal: canal
+          });
+        }
+
+        preview.value = msg;
+        preview.hidden = false;
+
+        if (canal === 'whatsapp') {
+          window.open('https://wa.me/' + CONTATO.whatsapp + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+          status.textContent = 'O WhatsApp abriu com a sua mensagem pronta. É só enviar.';
+        } else if (canal === 'email') {
+          const assunto = 'Proposta: ' + d.formato + ' · ' + d.empresa;
+          location.href = 'mailto:' + CONTATO.email + '?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent(msg);
+          status.textContent = 'Seu e-mail abriu com a mensagem pronta. É só enviar.';
+        } else {
+          preview.select();
+          let copiado = false;
+          try { copiado = document.execCommand('copy'); } catch (err) { copiado = false; }
+          window.open(CONTATO.linkedin, '_blank', 'noopener');
+          status.textContent = copiado
+            ? 'Mensagem copiada. No LinkedIn, clique em "Mensagem" e cole.'
+            : 'Copie a mensagem abaixo e envie pelo LinkedIn.';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
