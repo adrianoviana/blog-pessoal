@@ -63,6 +63,8 @@
       "@type": "Person",
       "name": "Adriano Viana",
       "url": "https://www.adrianoviana.com.br/about.html",
+      "email": "mailto:adriano.viana.p@gmail.com",
+      "telephone": "+55 98 99218-7569",
       "sameAs": [
         "https://www.youtube.com/@adriano_viana",
         "https://www.linkedin.com/in/adrianoviana/",
@@ -270,7 +272,11 @@
             <li><span>Resposta com horários para uma conversa de 30 min.</span></li>
             <li><span>Sem compromisso: a proposta só vem depois da conversa.</span></li>
           </ul>
-          <p class="mono disclosure">Prefere falar direto? <a href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer" data-track="empresas_contato_linkedin">Me chame no LinkedIn ↗</a></p>
+          <p class="mono disclosure">Prefere falar direto?
+            <a href="https://wa.me/5598992187569?text=Ol%C3%A1%2C%20Adriano!%20Vim%20pela%20p%C3%A1gina%20de%20empresas." target="_blank" rel="noopener noreferrer" data-track="empresas_contato_whatsapp">WhatsApp ↗</a> ·
+            <a href="mailto:adriano.viana.p@gmail.com?subject=Proposta%20para%20empresa" data-track="empresas_contato_email">adriano.viana.p@gmail.com</a> ·
+            <a href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer" data-track="empresas_contato_linkedin">LinkedIn ↗</a>
+          </p>
         </div>
         <div class="brand-card">
           <form id="lead-form" class="lead-form" novalidate>
@@ -358,13 +364,13 @@
 
   <script src="/js/site.js?v=8"></script>
   <script>
-    // Para onde vai o pedido de proposta. Preencha UM canal para receber direto:
+    // Para onde vai o pedido de proposta. O WhatsApp tem prioridade;
+    // o e-mail aparece como alternativa depois do envio.
     //   whatsapp: só números, com DDI e DDD. Ex.: '5511999999999'
-    //   email:    ex.: 'contato@adrianoviana.com.br'
     // Com os dois vazios, a mensagem é copiada e o LinkedIn abre para colar.
     const CONTATO = {
-      whatsapp: '',
-      email: '',
+      whatsapp: '5598992187569',
+      email: 'adriano.viana.p@gmail.com',
       linkedin: 'https://www.linkedin.com/in/adrianoviana/'
     };
 
@@ -381,6 +387,11 @@
         email: 'Enviar por e-mail',
         linkedin: 'Copiar mensagem e abrir o LinkedIn'
       }[canal];
+
+      const mailtoLink = (d, msg) => {
+        const assunto = 'Proposta: ' + d.formato + ' · ' + d.empresa;
+        return 'mailto:' + CONTATO.email + '?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent(msg);
+      };
 
       form.addEventListener('submit', e => {
         e.preventDefault();
@@ -418,10 +429,16 @@
 
         if (canal === 'whatsapp') {
           window.open('https://wa.me/' + CONTATO.whatsapp + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
-          status.textContent = 'O WhatsApp abriu com a sua mensagem pronta. É só enviar.';
+          status.textContent = 'O WhatsApp abriu com a sua mensagem pronta. É só enviar. ';
+          if (CONTATO.email) {
+            const a = document.createElement('a');
+            a.href = mailtoLink(d, msg);
+            a.textContent = 'Prefere e-mail? Enviar por e-mail';
+            a.dataset.track = 'empresas_lead_email_fallback';
+            status.appendChild(a);
+          }
         } else if (canal === 'email') {
-          const assunto = 'Proposta: ' + d.formato + ' · ' + d.empresa;
-          location.href = 'mailto:' + CONTATO.email + '?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent(msg);
+          location.href = mailtoLink(d, msg);
           status.textContent = 'Seu e-mail abriu com a mensagem pronta. É só enviar.';
         } else {
           preview.select();
