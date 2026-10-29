@@ -7,17 +7,18 @@ const SITE = {
   xUrl: 'https://x.com/adriano_viana'
 };
 
-// Vídeos da home: os 3 mais recentes do canal. Troque o id e o título
+// Vídeos da home: os 4 mais recentes do canal. Troque o id e o título
 // quando sair vídeo novo (o primeiro da lista é o mais recente).
 const VIDEOS = [
-  { id: 'Q7vnxCa8ca4', title: 'Como colocar na interface as informações que tu precisa' },
-  { id: 'F31EMdBbYxU', title: 'Tu não precisa assinar para testar esse agente' },
-  { id: 'CNHTLZFeW6E', title: 'Pare de recomeçar a mesma pesquisa toda semana' }
+  { id: '2DsmUIrO6W8', title: 'GPT-6.1 Sol vs Astra: qual vale mais a pena?' },
+  { id: 'CZFTzjgHq7E', title: 'Claude Code: dá para aprender enquanto a IA programa?' },
+  { id: '2Kxx83lZ2w4', title: 'Claude Opus 5.5: o jeito de pedir que destrava o modelo' },
+  { id: 'wgaPp3o5yuk', title: 'Opus 5.5 vs GPT-6 Astra: pedi o mesmo jogo pros dois' }
 ];
 
 const fmt = n => n.toLocaleString('pt-BR');
 
-// Trilha para quem está iniciando: curadoria das edições da newsletter,
+// Trilha para quem está iniciando: curadoria da newsletter e dos vídeos,
 // do mais básico ao mais avançado. Ordem pensada para iniciantes:
 // mentalidade -> primeira tarefa sem alucinar -> prompts que prestam -> automação.
 const TRAIL = [
@@ -26,6 +27,12 @@ const TRAIL = [
     name: 'Comece pelo jeito certo',
     blurb: 'Antes da ferramenta: como estudar sem travar e escolher sem hype.',
     items: [
+      {
+        title: 'Claude Code: dá para aprender enquanto a IA programa?',
+        url: 'https://www.youtube.com/watch?v=CZFTzjgHq7E',
+        kind: 'vídeo',
+        minutes: 11
+      },
       {
         title: 'Como usar IA de verdade no trabalho (e por que não é sobre qual ferramenta escolher)',
         url: 'https://adriano-newsletter.beehiiv.com/p/como-usar-ia-de-verdade-no-trabalho-e-por-que-n-o-sobre-qual-ferramenta-escolher',
@@ -49,8 +56,14 @@ const TRAIL = [
   {
     id: 2,
     name: 'Sua primeira tarefa real, sem invenção',
-    blurb: 'Use seus documentos como fonte e receba resposta com citação.',
+    blurb: 'Teste uma entrega na prática e use seus documentos como fonte.',
     items: [
+      {
+        title: 'Opus 5.5 vs GPT-6 Astra: pedi o mesmo jogo pros dois',
+        url: 'https://www.youtube.com/watch?v=wgaPp3o5yuk',
+        kind: 'vídeo',
+        minutes: 9
+      },
       {
         title: 'Tutorial Completo: Gemini Notebook — Fontes, Chat e Studio',
         url: 'https://adriano-newsletter.beehiiv.com/p/tutorial-completo-gemini-notebook-ex-notebooklm-fontes-chat-e-studio',
@@ -77,6 +90,12 @@ const TRAIL = [
     blurb: 'Por que o prompt gigante piora e como corrigir a causa.',
     items: [
       {
+        title: 'Claude Opus 5.5: o jeito de pedir que destrava o modelo',
+        url: 'https://www.youtube.com/watch?v=2Kxx83lZ2w4',
+        kind: 'vídeo',
+        minutes: 9
+      },
+      {
         title: 'Delete seus prompts: sua IA pode estar melhor sem 80% das regras',
         url: 'https://adriano-newsletter.beehiiv.com/p/delete-seus-prompts-sua-ia-pode-estar-melhor-sem-80-das-regras',
         kind: 'artigo · vídeo',
@@ -99,8 +118,14 @@ const TRAIL = [
   {
     id: 4,
     name: 'Para quem quer ir além',
-    blurb: 'Do arquivo pronto à rotina que roda sozinha.',
+    blurb: 'Compare modelos, refine suas escolhas e automatize sua rotina.',
     items: [
+      {
+        title: 'GPT-6.1 Sol vs Astra: qual vale mais a pena?',
+        url: 'https://www.youtube.com/watch?v=2DsmUIrO6W8',
+        kind: 'vídeo',
+        minutes: 9
+      },
       {
         title: 'Tutorial Completo: como usar o Claude Cowork do jeito certo em 6 passos',
         url: 'https://adriano-newsletter.beehiiv.com/p/tutorial-completo-como-usar-o-claude-cowork-do-jeito-certo-em-6-passos',
@@ -149,7 +174,7 @@ function renderTrilha() {
         <div class="trilha-level-head">
           <span class="mono level-num">Nível ${level.id}</span>
           ${level.id === 1 ? '<span class="start-here">Comece aqui</span>' : ''}
-          <span class="mono">${level.items.length} edições · ${total} min</span>
+          <span class="mono">${level.items.length} conteúdos · ${total} min</span>
         </div>
         <h3>${level.name}</h3>
         <p class="level-blurb">${level.blurb}</p>
