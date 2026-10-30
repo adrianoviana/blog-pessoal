@@ -15,6 +15,9 @@ marked.setOptions({
 // Diretórios
 const POSTS_DIR = path.join(__dirname, 'posts');
 const OUTPUT_DIR = path.join(__dirname, 'blog');
+// Guias dos Reels (formato curto-ig): guias/<slug>.md -> guia/<slug>.html
+const GUIAS_DIR = path.join(__dirname, 'guias');
+const GUIAS_OUTPUT_DIR = path.join(__dirname, 'guia');
 
 // Criar diretório de output se não existir
 if (!fs.existsSync(OUTPUT_DIR)) {
@@ -28,10 +31,18 @@ const SITE = {
 const fmt = n => n.toLocaleString('pt-BR');
 
 function getPostTemplate(post) {
+  const dir = post.dir || 'blog';
   const levelLine = post.level ? `<span>Nível ${post.level}</span>` : '';
   const videoBlock = post.video ? `
       <div class="video-embed" style="margin: var(--sp-3) 0;">
         <iframe src="https://www.youtube.com/embed/${post.video}" title="${post.title}" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>` : '';
+  const reelLink = post.reel
+    ? `<a href="${post.reel}" target="_blank" rel="noopener noreferrer" data-track="guia_reel">Ver o Reel no Instagram ↗</a>`
+    : `Siga <a href="https://www.instagram.com/adrianov.ai/" target="_blank" rel="noopener noreferrer" data-track="guia_instagram">@adrianov.ai</a> no Instagram.`;
+  const guiaBlock = post.kind === 'guia' ? `
+      <div class="post-partner" style="margin-bottom: var(--sp-3);">
+        <p><strong>Guia do Reel${post.keyword ? ` · palavra ${post.keyword}` : ''}.</strong> ${reelLink}</p>
       </div>` : '';
 
   return `<!DOCTYPE html>
@@ -42,9 +53,9 @@ function getPostTemplate(post) {
   <meta name="description" content="${post.excerpt}">
   <meta name="author" content="Adriano Viana">
   <meta name="keywords" content="${post.tags.join(', ')}">
-  <link rel="canonical" href="https://www.adrianoviana.com.br/blog/${post.slug}.html">
+  <link rel="canonical" href="https://www.adrianoviana.com.br/${dir}/${post.slug}.html">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://www.adrianoviana.com.br/blog/${post.slug}.html">
+  <meta property="og:url" content="https://www.adrianoviana.com.br/${dir}/${post.slug}.html">
   <meta property="og:title" content="${post.title}">
   <meta property="og:description" content="${post.excerpt}">
   <meta property="og:image" content="https://www.adrianoviana.com.br${post.image}">
@@ -108,6 +119,7 @@ function getPostTemplate(post) {
 
     <section class="post-content">
       <div class="container">
+        ${guiaBlock}
         ${videoBlock}
         ${post.content}
       </div>
@@ -221,6 +233,17 @@ function extractExcerptFromContent(content) {
   return 'Clique para ler mais...';
 }
 
+// Markdown -> HTML (sem o primeiro H1) com o callout "Onde isso quebra"
+function renderMarkdown(content) {
+  // Remover o primeiro H1 do conteúdo para evitar duplicação
+  const contentWithoutH1 = content.replace(/^#\s+.+$/m, '').trim();
+  const htmlContent = marked(contentWithoutH1);
+  return htmlContent.replace(
+    /<blockquote>\s*<p><strong>Onde isso quebra\.?<\/strong>/g,
+    '<blockquote class="quebra"><p><strong>Onde isso quebra.</strong>'
+  );
+}
+
 // Processar posts
 function buildPosts() {
   const posts = [];
@@ -233,13 +256,7 @@ function buildPosts() {
 
     const slug = filename.replace('.md', '');
 
-    // Remover o primeiro H1 do conteúdo para evitar duplicação
-    const contentWithoutH1 = content.replace(/^#\s+.+$/m, '').trim();
-    const htmlContent = marked(contentWithoutH1);
-    const htmlWithCallout = htmlContent.replace(
-      /<blockquote>\s*<p><strong>Onde isso quebra\.?<\/strong>/g,
-      '<blockquote class="quebra"><p><strong>Onde isso quebra.</strong>'
-    );
+    const htmlWithCallout = renderMarkdown(content);
 
     // Extrair title e excerpt do conteúdo se não existirem no frontmatter
     const title = data.title || extractTitleFromContent(content);
@@ -280,11 +297,75 @@ function buildPosts() {
   return posts;
 }
 
+// Data do frontmatter como "AAAA-MM-DD" (YAML sem aspas vira Date)
+function normalizeDate(value, filename) {
+  if (value instanceof Date && !isNaN(value)) {
+    return value.toISOString().slice(0, 10);
+  }
+  if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return value;
+  }
+  throw new Error(`guias/${filename}: "date" precisa ser AAAA-MM-DD (recebido: ${value})`);
+}
+
+// Processar guias dos Reels. Não entram em posts.json nem na trilha da home.
+// Arquivos que começam com "_" (modelos) e README.md não são publicados.
+function buildGuias() {
+  if (!fs.existsSync(GUIAS_DIR)) {
+    return [];
+  }
+  const files = fs.readdirSync(GUIAS_DIR).filter(file =>
+    file.endsWith('.md') && !file.startsWith('_') && file !== 'README.md'
+  );
+  if (files.length && !fs.existsSync(GUIAS_OUTPUT_DIR)) {
+    fs.mkdirSync(GUIAS_OUTPUT_DIR, { recursive: true });
+  }
+
+  const guias = [];
+  files.forEach(filename => {
+    const fileContent = fs.readFileSync(path.join(GUIAS_DIR, filename), 'utf8');
+    const { data, content } = matter(fileContent);
+    const slug = filename.replace('.md', '');
+
+    if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) {
+      throw new Error(`guias/${filename}: o nome do arquivo precisa ser um slug (minúsculas, números e hífens)`);
+    }
+    const keyword = data.palavra_chave ? String(data.palavra_chave) : null;
+    if (keyword && !/^[A-Z0-9]+$/.test(keyword)) {
+      throw new Error(`guias/${filename}: "palavra_chave" precisa ser uma palavra em maiúsculas, sem acento (recebido: ${keyword})`);
+    }
+
+    const guia = {
+      kind: 'guia',
+      dir: 'guia',
+      slug,
+      title: data.title || extractTitleFromContent(content),
+      date: normalizeDate(data.date, filename),
+      excerpt: data.excerpt || extractExcerptFromContent(content),
+      tags: data.tags || [],
+      image: data.image || '/assets/images/default-post.jpg',
+      level: null,
+      minutes: data.minutes || estimateReadTime(content),
+      video: data.video || null,
+      keyword,
+      reel: data.reel || null,        // URL do Reel, preenchida depois da publicação
+      content: renderMarkdown(content)
+    };
+    guias.push(guia);
+
+    fs.writeFileSync(path.join(GUIAS_OUTPUT_DIR, `${slug}.html`), getPostTemplate(guia));
+    console.log(`✓ Generated: guia/${slug}.html`);
+  });
+
+  return guias;
+}
+
 // Executar
 try {
   console.log('Building blog posts...\n');
   const posts = buildPosts();
-  console.log(`\n✓ Build complete! Generated ${posts.length} post(s)`);
+  const guias = buildGuias();
+  console.log(`\n✓ Build complete! Generated ${posts.length} post(s) and ${guias.length} guia(s)`);
 } catch (error) {
   console.error('Error building posts:', error);
   process.exit(1);
