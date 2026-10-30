@@ -1,0 +1,27 @@
+name: Build do site
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      # Gera um guia descartável a partir do modelo e confere a página.
+      - name: Guia de teste a partir de guias/_modelo.md
+        run: |
+          sed 's/"AAAA-MM-DD"/"2026-01-01"/' guias/_modelo.md > guias/teste-ci.md
+          npm run build
+          test -f guia/teste-ci.html
+          grep -q 'href="https://www.adrianoviana.com.br/guia/teste-ci.html"' guia/teste-ci.html
+          grep -q 'palavra PALAVRA' guia/teste-ci.html
+          grep -q 'class="quebra"' guia/teste-ci.html
+          if grep -q 'teste-ci' posts.json; then echo 'guia vazou para posts.json'; exit 1; fi
+          test ! -f guia/_modelo.html
+          test ! -f guia/README.html
