@@ -4,8 +4,8 @@
   "description": "Blog pessoal de Adriano Viana com posts em Markdown",
   "scripts": {
     "build": "node build-posts.js",
-    "build:watch": "nodemon --watch posts -e md --exec 'node build-posts.js'",
-    "dev": "concurrently \"nodemon --watch posts -e md --exec 'node build-posts.js'\" \"browser-sync start --server --port 8080 --files 'blog,js,css,posts.json,*.html' --no-open\""
+    "build:watch": "nodemon --watch posts --watch guias -e md --exec 'node build-posts.js'",
+    "dev": "concurrently \"nodemon --watch posts --watch guias -e md --exec 'node build-posts.js'\" \"browser-sync start --server --port 8080 --files 'blog,guia,js,css,posts.json,*.html' --no-open\""
   },
   "keywords": [
     "blog",

@@ -59,6 +59,7 @@ npm run build
 
 Isso irá:
 - Converter todos os arquivos `.md` em `/posts` para HTML em `/blog`
+- Converter os guias dos Reels em `/guias` para HTML em `/guia`
 - Gerar um arquivo `posts.json` com metadados
 - Aplicar o template HTML com header, footer, etc.
 
@@ -70,7 +71,11 @@ Para desenvolvimento contínuo:
 npm run build:watch
 ```
 
-Isso monitora mudanças em `/posts` e reconstrói automaticamente.
+Isso monitora mudanças em `/posts` e `/guias` e reconstrói automaticamente. `npm run dev` faz o mesmo e serve o site em `http://localhost:8080`.
+
+## Guias dos Reels
+
+Cada Reel ou carrossel do @adrianov.ai com CTA "Comente PALAVRA" entrega uma página em `/guia/<slug>.html`. Veja [guias/README.md](guias/README.md) e o [modelo](guias/_modelo.md).
 
 ## Estrutura de Diretórios
 
@@ -82,6 +87,9 @@ blog-pessoal/
 ├── blog/               # HTML gerado (não editar)
 │   ├── exemplo-post.html
 │   └── seu-post.html
+├── guias/              # Guias dos Reels em Markdown (editar aqui)
+│   └── _modelo.md      # Modelo, não publicado
+├── guia/               # HTML gerado dos guias (não editar)
 ├── assets/
 │   └── images/        # Imagens dos posts
 ├── js/
