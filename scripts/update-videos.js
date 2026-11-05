@@ -1,5 +1,7 @@
 // Atualiza videos.json com os vídeos mais recentes do canal do YouTube,
-// a partir do feed RSS público (sem chave de API). Roda no GitHub Actions
+// sem chave de API. Tenta, nesta ordem: o feed RSS do canal, o feed da
+// playlist de uploads e, se o YouTube devolver 404 nos dois (acontece),
+// a própria aba "Vídeos" do canal. Roda no GitHub Actions
 // (.github/workflows/youtube.yml) e também à mão: `npm run videos`.
 //
 // Shorts ficam de fora: na home só entram os vídeos longos.
@@ -10,9 +12,11 @@ const fs = require('fs');
 const path = require('path');
 
 const HANDLE = '@adriano_viana';
+const DEFAULT_CHANNEL_ID = 'UCPl-Y1ypgzViQQDxeI26fMQ'; // descoberto pela página do canal
 const MAX_VIDEOS = 12;
 const OUT = path.join(__dirname, '..', 'videos.json');
-const UA = 'Mozilla/5.0 (compatible; blog-pessoal-video-sync/1.0)';
+// User-Agent de navegador: com UA de robô o YouTube às vezes devolve outra página.
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36';
 
 function readCurrent() {
   try {
@@ -22,10 +26,21 @@ function readCurrent() {
   }
 }
 
-async function get(url) {
-  const res = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': 'pt-BR,pt;q=0.9' } });
-  if (!res.ok) throw new Error(`${url} respondeu ${res.status}`);
-  return res.text();
+const wait = ms => new Promise(r => setTimeout(r, ms));
+
+async function get(url, { tries = 3, lang = 'pt-BR,pt;q=0.9' } = {}) {
+  let last;
+  for (let i = 0; i < tries; i++) {
+    if (i) await wait(2000 * 2 ** (i - 1));
+    try {
+      const res = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': lang, Cookie: 'PREF=hl=pt-BR&gl=BR' } });
+      if (res.ok) return res.text();
+      last = new Error(`${url} respondeu ${res.status}`);
+    } catch (err) {
+      last = err;
+    }
+  }
+  throw last;
 }
 
 // O ID do canal (UC...) vem da variável YOUTUBE_CHANNEL_ID, do videos.json
@@ -34,6 +49,7 @@ async function resolveChannelId(current) {
   const fromEnv = (process.env.YOUTUBE_CHANNEL_ID || '').trim();
   if (fromEnv) return fromEnv;
   if (current.channelId) return current.channelId;
+  if (DEFAULT_CHANNEL_ID) return DEFAULT_CHANNEL_ID;
 
   const html = await get(`https://www.youtube.com/${HANDLE}`);
   const m = html.match(/feeds\/videos\.xml\?channel_id=(UC[\w-]{22})/)
@@ -74,18 +90,103 @@ function parseFeed(xml) {
   }).filter(v => v.id && v.title);
 }
 
+// "há 2 dias", "Transmitido há 3 semanas", "2 days ago" -> data
+// aproximada AAAA-MM-DD.
+const UNIT_DAYS = [
+  [/^(segundo|minuto|second|minute)/, 0],
+  [/^(hora|hour)/, 1 / 24],
+  [/^(dia|day)/, 1],
+  [/^(semana|week)/, 7],
+  [/^(m[eê]s|meses|month)/, 30],
+  [/^(ano|year)/, 365]
+];
+function approxDate(text, now = new Date()) {
+  const m = String(text || '').toLowerCase()
+    .match(/(?:h[áa]\s+)?(\d+)\s+(segundos?|minutos?|horas?|dias?|semanas?|m[eê]s|meses|anos?|seconds?|minutes?|hours?|days?|weeks?|months?|years?)(?:\s+(?:atr[áa]s|ago))?/);
+  if (!m || !/h[áa]\s|atr[áa]s|ago/.test(m[0])) return null;
+  const unit = UNIT_DAYS.find(([re]) => re.test(m[2]));
+  if (!unit) return null;
+  const d = new Date(now.getTime() - Number(m[1]) * unit[1] * 864e5);
+  return d.toISOString().slice(0, 10);
+}
+
+// Primeiro texto dentro do objeto que pareça "há N dias".
+function findAgo(obj) {
+  for (const [, c] of JSON.stringify(obj || {}).matchAll(/"(?:content|simpleText|text)":"([^"]{3,60})"/g)) {
+    if (approxDate(c)) return c;
+  }
+  return '';
+}
+
+const textOf = t => !t ? '' : (t.simpleText || (t.runs || []).map(r => r.text).join('') || t.content || '');
+
+// Lê o ytInitialData da aba /videos (só vídeos longos; Shorts ficam
+// em outra aba). Cobre o formato antigo (videoRenderer) e o novo
+// (lockupViewModel).
+function parseVideosPage(html) {
+  const m = html.match(/var ytInitialData\s*=\s*(\{[\s\S]*?\});\s*<\/script>/);
+  if (!m) throw new Error('A aba Vídeos veio sem ytInitialData.');
+  const data = JSON.parse(m[1]);
+  const out = [];
+  const seen = new Set();
+  (function walk(node) {
+    if (!node || typeof node !== 'object') return;
+    if (Array.isArray(node)) return node.forEach(walk);
+    const vr = node.videoRenderer;
+    if (vr && vr.videoId && !seen.has(vr.videoId)) {
+      seen.add(vr.videoId);
+      out.push({ id: vr.videoId, title: textOf(vr.title), ago: textOf(vr.publishedTimeText) || findAgo(vr) });
+    }
+    const lv = node.lockupViewModel;
+    if (lv && lv.contentId && /VIDEO/.test(lv.contentType || '') && !seen.has(lv.contentId)) {
+      seen.add(lv.contentId);
+      const meta = lv.metadata && lv.metadata.lockupMetadataViewModel;
+      out.push({ id: lv.contentId, title: textOf(meta && meta.title), ago: findAgo(meta && meta.metadata) });
+    }
+    Object.values(node).forEach(walk);
+  })(data);
+  return out.filter(v => v.title);
+}
+
+async function fetchVideos(channelId) {
+  const feeds = [
+    `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`,
+    `https://www.youtube.com/feeds/videos.xml?playlist_id=UU${channelId.slice(2)}`
+  ];
+  for (const url of feeds) {
+    try {
+      const list = parseFeed(await get(url)).filter(v => !v.short);
+      if (list.length) {
+        console.log(`Fonte: ${url}`);
+        return list.map(({ id, title, published }) => ({ id, title, published, exact: true }));
+      }
+    } catch (err) {
+      console.warn(`Falhou: ${err.message}`);
+    }
+  }
+  // Em português: com hl=en o YouTube devolve títulos traduzidos à máquina.
+  const url = `https://www.youtube.com/channel/${channelId}/videos?hl=pt-BR&gl=BR&persist_hl=1`;
+  const list = parseVideosPage(await get(url));
+  console.log(`Fonte: ${url}`);
+  return list.map(({ id, title, ago }) => ({ id, title, published: approxDate(ago) }));
+}
+
 async function main() {
   const current = readCurrent();
   const channelId = await resolveChannelId(current);
-  const xml = await get(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
+  const known = new Map((current.videos || []).map(v => [v.id, v]));
 
-  const videos = parseFeed(xml)
-    .filter(v => !v.short)
+  const videos = (await fetchVideos(channelId))
     .slice(0, MAX_VIDEOS)
-    .map(({ id, title, published }) => ({ id, title, published }));
+    // Data do feed é exata; a da aba Vídeos é aproximada, então uma data
+    // já gravada vale mais que ela.
+    .map(({ exact, ...v }) => ({
+      ...v,
+      published: (exact ? v.published : (known.get(v.id) || {}).published || v.published) || null
+    }));
 
   // Feed vazio quase sempre é erro do lado do YouTube: mantém o arquivo.
-  if (!videos.length) throw new Error('O feed veio sem vídeos; videos.json não foi alterado.');
+  if (!videos.length) throw new Error('O YouTube não devolveu vídeos; videos.json não foi alterado.');
 
   const next = { channelId, videos };
   const text = JSON.stringify(next, null, 2) + '\n';
