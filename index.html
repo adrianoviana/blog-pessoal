@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://subscribe-forms.beehiiv.com">
 
   <link rel="stylesheet" href="/css/normalize.css?v=4">
-  <link rel="stylesheet" href="/css/main.css?v=7">
+  <link rel="stylesheet" href="/css/main.css?v=8">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJ622QQBEJ"></script>
   <script>
@@ -61,6 +61,7 @@
         "worksFor": { "@type": "Organization", "name": "CI&T" },
         "sameAs": [
           "https://www.youtube.com/@adriano_viana",
+          "https://www.instagram.com/adrianov.ai/",
           "https://x.com/adriano_viana",
           "https://www.linkedin.com/in/adrianoviana/",
           "https://adriano-newsletter.beehiiv.com/"
@@ -79,6 +80,7 @@
     <nav class="nav-container" aria-label="Principal">
       <div class="nav-brand"><a href="/"><img src="/assets/images/profile.jpg" alt="" width="30" height="30">@adriano_viana</a></div>
       <ul class="nav-menu">
+        <li><a href="#youtube">Vídeos</a></li>
         <li><a href="#trilha">Trilha</a></li>
         <li><a href="/kit.html">Kit grátis</a></li>
         <li><a href="/empresas.html">Empresas</a></li>
@@ -100,6 +102,11 @@
     <section class="hero hero-home">
       <div class="container hero-grid">
         <div>
+          <a class="latest-video" href="#youtube" data-latest-video data-track="hero_ultimo_video" hidden>
+            <span class="latest-video-tag"><span data-icon="youtube"></span><span data-latest-label>Último vídeo</span></span>
+            <span class="latest-video-title" data-latest-title></span>
+            <span aria-hidden="true">→</span>
+          </a>
           <p class="section-index">Newsletter Behind the Prompt · grátis</p>
           <h1>Tutoriais de IA extremamente práticos para profissionais ocupados.</h1>
           <p class="lead">
@@ -139,18 +146,35 @@
             <li><span class="stat-num" data-count="trilha">17</span><span class="stat-label">conteúdos na trilha grátis</span></li>
           </ul>
           <div class="author-social">
-            <a class="social-chip" href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe"><span data-icon="youtube"></span>YouTube</a>
+            <a class="social-chip is-youtube" href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe"><span data-icon="youtube"></span>YouTube</a>
             <a class="social-chip" href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer" data-track="linkedin_follow"><span data-icon="linkedin"></span>LinkedIn</a>
+            <a class="social-chip" href="https://www.instagram.com/adrianov.ai/" target="_blank" rel="noopener noreferrer" data-track="instagram_follow"><span data-icon="instagram"></span>Instagram</a>
             <a class="social-chip" href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer" data-track="x_follow"><span data-icon="x"></span>X</a>
           </div>
         </aside>
       </div>
     </section>
 
-    <!-- 01 · O que você recebe -->
-    <section id="o-que-voce-recebe" class="section-alt">
+    <!-- 01 · Canal no YouTube -->
+    <section id="youtube" class="section-alt section-youtube">
       <div class="container">
-        <p class="section-index">01 / 06 · O que chega no seu e-mail</p>
+        <p class="section-index">01 / 06 · Canal no YouTube</p>
+        <div class="section-header">
+          <h2>É no canal que eu testo isso toda semana.</h2>
+          <p>Tela aberta, ferramenta rodando e o resultado real, sem corte para esconder o que deu errado. <strong data-count="youtube">5k+</strong> pessoas já acompanham.</p>
+        </div>
+        <div class="videos-root" id="videos-root" aria-live="polite"></div>
+        <div class="btn-row">
+          <a class="btn" href="https://www.youtube.com/@adriano_viana/videos" target="_blank" rel="noopener noreferrer" data-track="youtube_videos">Ver todos os vídeos</a>
+          <a class="link-arrow" href="#trilha">Ou siga a trilha em ordem →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · O que você recebe -->
+    <section id="o-que-voce-recebe">
+      <div class="container">
+        <p class="section-index">02 / 06 · O que chega no seu e-mail</p>
         <div class="section-header">
           <h2>Menos teoria sobre IA. Mais tarefa pronta para usar no mesmo dia.</h2>
         </div>
@@ -192,10 +216,10 @@
       </div>
     </section>
 
-    <!-- 02 · Trilha -->
-    <section id="trilha">
+    <!-- 03 · Trilha -->
+    <section id="trilha" class="section-alt">
       <div class="container">
-        <p class="section-index">02 / 06 · Trilha grátis</p>
+        <p class="section-index">03 / 06 · Trilha grátis</p>
         <div class="section-header">
           <h2>Por onde começar, em que ordem, e quanto tempo leva.</h2>
           <p>Um nível por vez. Aplique antes de passar para o próximo. Os tempos são de leitura ou de vídeo, não de prática.</p>
@@ -204,22 +228,6 @@
         <div class="section-cta">
           <p>A próxima edição da trilha chega no seu e-mail.</p>
           <a class="btn btn-primary" href="#assinar" data-track="trilha_assinar">Assinar grátis</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 · Vídeos -->
-    <section id="youtube" class="section-alt">
-      <div class="container">
-        <p class="section-index">03 / 06 · Canal</p>
-        <div class="section-header">
-          <h2>É no canal que eu testo isso toda semana.</h2>
-          <p>Tela aberta, ferramenta rodando e o resultado real. <strong data-count="youtube">5k+</strong> pessoas já acompanham.</p>
-        </div>
-        <div class="videos-grid" id="videos-root"></div>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe"><span data-icon="youtube"></span>Inscrever no canal</a>
-          <a class="link-arrow" href="https://www.youtube.com/@adriano_viana/videos" target="_blank" rel="noopener noreferrer" data-track="youtube_videos">Ver todos os vídeos →</a>
         </div>
       </div>
     </section>
@@ -266,12 +274,19 @@
             <p>O tutorial completo, com prompt pronto e o ponto onde ele quebra. Com o kit de skills de bônus.</p>
             <span class="btn btn-primary btn-sm">Assinar grátis</span>
           </a>
-          <a class="social-card" href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe">
+          <a class="social-card is-youtube" href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe">
             <span data-icon="youtube"></span>
             <span class="social-name">YouTube</span>
             <strong><span data-count="youtube">5k+</span> inscritos</strong>
             <p>Os testes em vídeo: a ferramenta rodando na tela, do começo ao resultado.</p>
-            <span class="btn btn-sm">Inscrever-se</span>
+            <span class="btn btn-primary btn-sm">Inscrever-se</span>
+          </a>
+          <a class="social-card" href="https://www.instagram.com/adrianov.ai/" target="_blank" rel="noopener noreferrer" data-track="instagram_follow">
+            <span data-icon="instagram"></span>
+            <span class="social-name">Instagram · @adrianov.ai</span>
+            <strong>Reels de 1 minuto</strong>
+            <p>Uma técnica por Reel. Comente a palavra do vídeo e receba o guia completo por DM.</p>
+            <span class="btn btn-sm">Seguir</span>
           </a>
           <a class="social-card" href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer" data-track="linkedin_follow">
             <span data-icon="linkedin"></span>
@@ -360,6 +375,7 @@
         <div class="footer-links">
           <a href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe"><span data-icon="youtube"></span>YouTube</a>
           <a href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer" data-track="linkedin_follow"><span data-icon="linkedin"></span>LinkedIn</a>
+          <a href="https://www.instagram.com/adrianov.ai/" target="_blank" rel="noopener noreferrer" data-track="instagram_follow"><span data-icon="instagram"></span>Instagram</a>
           <a href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer" data-track="x_follow"><span data-icon="x"></span>X</a>
           <a href="https://adriano-newsletter.beehiiv.com/" target="_blank" rel="noopener noreferrer" data-track="newsletter_archive"><span data-icon="mail"></span>Edições anteriores</a>
         </div>
@@ -381,6 +397,6 @@
     </div>
   </footer>
 
-  <script src="/js/site.js?v=8"></script>
+  <script src="/js/site.js?v=9"></script>
 </body>
 </html>

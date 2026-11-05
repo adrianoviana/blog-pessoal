@@ -4,12 +4,14 @@ const SITE = {
   youtubeSubscribers: '5k+',
   newsletterUrl: 'https://adriano-newsletter.beehiiv.com/',
   youtubeUrl: 'https://www.youtube.com/@adriano_viana',
+  instagramUrl: 'https://www.instagram.com/adrianov.ai/',
   xUrl: 'https://x.com/adriano_viana'
 };
 
-// Vídeos da home: os 4 mais recentes do canal. Troque o id e o título
-// quando sair vídeo novo (o primeiro da lista é o mais recente).
-const VIDEOS = [
+// Vídeos da home: vêm de /videos.json, que o GitHub Actions atualiza
+// sozinho a partir do feed do canal (.github/workflows/youtube.yml).
+// Esta lista só aparece se o videos.json não carregar.
+const VIDEOS_FALLBACK = [
   { id: '2DsmUIrO6W8', title: 'GPT-6.1 Sol vs Astra: qual vale mais a pena?' },
   { id: 'CZFTzjgHq7E', title: 'Claude Code: dá para aprender enquanto a IA programa?' },
   { id: '2Kxx83lZ2w4', title: 'Claude Opus 5.5: o jeito de pedir que destrava o modelo' },
@@ -217,21 +219,62 @@ function renderTrilha() {
 
 // Vídeos com "facade": só a miniatura carrega; o player do YouTube
 // entra no clique. Deixa a home bem mais leve no celular.
-function renderVideos() {
-  const root = document.querySelector('#videos-root');
-  if (!root) return;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-  root.innerHTML = VIDEOS.map(v => `
-    <figure class="video-card">
+function relativeDate(iso) {
+  if (!iso) return '';
+  const days = Math.round((Date.now() - new Date(iso + 'T12:00:00')) / 864e5);
+  if (days < 0) return '';
+  const rtf = new Intl.RelativeTimeFormat('pt-BR', { numeric: 'auto' });
+  if (days < 7) return rtf.format(-days, 'day');
+  if (days < 30) return rtf.format(-Math.round(days / 7), 'week');
+  if (days < 365) return rtf.format(-Math.round(days / 30), 'month');
+  return rtf.format(-Math.round(days / 365), 'year');
+}
+
+const isNew = v => {
+  if (!v.published) return false;
+  const days = (Date.now() - new Date(v.published + 'T12:00:00')) / 864e5;
+  return days >= 0 && days <= 10;
+};
+
+function videoCard(v, featured) {
+  const thumb = featured
+    ? `<img src="https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg'" alt="" width="1280" height="720">`
+    : `<img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">`;
+  const when = relativeDate(v.published);
+  const meta = [isNew(v) ? '<span class="video-new">Novo</span>' : '', when ? `<span>${when}</span>` : '']
+    .filter(Boolean).join('');
+  return `
+    <figure class="video-card${featured ? ' is-featured' : ''}">
       <div class="video-embed">
-        <button class="video-lite" type="button" data-id="${v.id}" aria-label="Assistir: ${v.title}">
-          <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+        <button class="video-lite" type="button" data-id="${esc(v.id)}" aria-label="Assistir: ${esc(v.title)}">
+          ${thumb}
           <span class="play" aria-hidden="true"></span>
         </button>
       </div>
-      <figcaption>${v.title}</figcaption>
-    </figure>`).join('');
+      <figcaption>
+        ${meta || featured ? `<span class="video-meta mono">${meta}</span>` : ''}
+        <a href="https://www.youtube.com/watch?v=${esc(v.id)}" target="_blank" rel="noopener noreferrer" data-track="video_title">${esc(v.title)}</a>
+        ${featured ? `<span class="video-featured-cta">
+          <a class="btn btn-primary btn-sm" href="${SITE.youtubeUrl}?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe_featured"><span data-icon="youtube"></span>Inscrever no canal</a>
+          <span class="mono">Vídeo novo toda semana</span>
+        </span>` : ''}
+      </figcaption>
+    </figure>`;
+}
 
+async function loadVideos() {
+  try {
+    const res = await fetch('/videos.json', { cache: 'no-cache' });
+    if (!res.ok) throw new Error(res.status);
+    const data = await res.json();
+    if (Array.isArray(data.videos) && data.videos.length) return data.videos;
+  } catch (e) { /* usa a lista de reserva */ }
+  return VIDEOS_FALLBACK;
+}
+
+function playOnClick(root) {
   root.addEventListener('click', e => {
     const btn = e.target.closest('.video-lite');
     if (!btn) return;
@@ -246,16 +289,41 @@ function renderVideos() {
   });
 }
 
+// Home: o vídeo mais recente em destaque + os próximos em grade.
+// Também preenche o selo "Novo vídeo" do topo da página.
+async function renderVideos() {
+  const root = document.querySelector('#videos-root');
+  const pill = document.querySelector('[data-latest-video]');
+  if (!root && !pill) return;
+
+  const videos = await loadVideos();
+  const [latest, ...rest] = videos;
+
+  if (pill && latest) {
+    pill.querySelector('[data-latest-title]').textContent = latest.title;
+    pill.querySelector('[data-latest-label]').textContent = isNew(latest) ? 'Novo vídeo' : 'Último vídeo';
+    pill.hidden = false;
+  }
+  if (!root) return;
+
+  root.innerHTML = `
+    ${videoCard(latest, true)}
+    <div class="videos-grid">${rest.slice(0, 6).map(v => videoCard(v, false)).join('')}</div>`;
+  renderIcons(root);
+  playOnClick(root);
+}
+
 // Ícones das redes: <span data-icon="youtube"></span> vira SVG.
 const ICONS = {
   youtube: 'M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z',
   linkedin: 'M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z',
   x: 'M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.12z',
+  instagram: 'M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z',
   mail: 'M2 4h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.4l10 6.3 10-6.3V6H2zm20 2.8-9.5 6a1 1 0 0 1-1 0L2 8.8V18h20V8.8z'
 };
 
-function renderIcons() {
-  document.querySelectorAll('[data-icon]').forEach(el => {
+function renderIcons(scope) {
+  (scope || document).querySelectorAll('[data-icon]').forEach(el => {
     const d = ICONS[el.dataset.icon];
     if (!d) return;
     el.outerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${d}"/></svg>`;
