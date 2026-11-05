@@ -33,7 +33,7 @@ async function get(url, { tries = 3, lang = 'pt-BR,pt;q=0.9' } = {}) {
   for (let i = 0; i < tries; i++) {
     if (i) await wait(2000 * 2 ** (i - 1));
     try {
-      const res = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': lang } });
+      const res = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': lang, Cookie: 'PREF=hl=pt-BR&gl=BR' } });
       if (res.ok) return res.text();
       last = new Error(`${url} respondeu ${res.status}`);
     } catch (err) {
@@ -90,14 +90,32 @@ function parseFeed(xml) {
   }).filter(v => v.id && v.title);
 }
 
-// "2 days ago", "Streamed 3 weeks ago" -> data aproximada AAAA-MM-DD.
+// "há 2 dias", "Transmitido há 3 semanas", "2 days ago" -> data
+// aproximada AAAA-MM-DD.
+const UNIT_DAYS = [
+  [/^(segundo|minuto|second|minute)/, 0],
+  [/^(hora|hour)/, 1 / 24],
+  [/^(dia|day)/, 1],
+  [/^(semana|week)/, 7],
+  [/^(m[eê]s|meses|month)/, 30],
+  [/^(ano|year)/, 365]
+];
 function approxDate(text, now = new Date()) {
-  const m = String(text || '').match(/(\d+)\s+(second|minute|hour|day|week|month|year)s?\s+ago/i);
-  if (!m) return null;
-  const n = Number(m[1]);
-  const days = { second: 0, minute: 0, hour: n / 24, day: n, week: n * 7, month: n * 30, year: n * 365 }[m[2].toLowerCase()];
-  const d = new Date(now.getTime() - (m[2].match(/second|minute/i) ? 0 : days) * 864e5);
+  const m = String(text || '').toLowerCase()
+    .match(/(?:h[áa]\s+)?(\d+)\s+(segundos?|minutos?|horas?|dias?|semanas?|m[eê]s|meses|anos?|seconds?|minutes?|hours?|days?|weeks?|months?|years?)(?:\s+(?:atr[áa]s|ago))?/);
+  if (!m || !/h[áa]\s|atr[áa]s|ago/.test(m[0])) return null;
+  const unit = UNIT_DAYS.find(([re]) => re.test(m[2]));
+  if (!unit) return null;
+  const d = new Date(now.getTime() - Number(m[1]) * unit[1] * 864e5);
   return d.toISOString().slice(0, 10);
+}
+
+// Primeiro texto dentro do objeto que pareça "há N dias".
+function findAgo(obj) {
+  for (const [, c] of JSON.stringify(obj || {}).matchAll(/"(?:content|simpleText|text)":"([^"]{3,60})"/g)) {
+    if (approxDate(c)) return c;
+  }
+  return '';
 }
 
 const textOf = t => !t ? '' : (t.simpleText || (t.runs || []).map(r => r.text).join('') || t.content || '');
@@ -117,15 +135,13 @@ function parseVideosPage(html) {
     const vr = node.videoRenderer;
     if (vr && vr.videoId && !seen.has(vr.videoId)) {
       seen.add(vr.videoId);
-      out.push({ id: vr.videoId, title: textOf(vr.title), ago: textOf(vr.publishedTimeText) });
+      out.push({ id: vr.videoId, title: textOf(vr.title), ago: textOf(vr.publishedTimeText) || findAgo(vr) });
     }
     const lv = node.lockupViewModel;
     if (lv && lv.contentId && /VIDEO/.test(lv.contentType || '') && !seen.has(lv.contentId)) {
       seen.add(lv.contentId);
       const meta = lv.metadata && lv.metadata.lockupMetadataViewModel;
-      const rows = JSON.stringify((meta && meta.metadata) || {});
-      const ago = (rows.match(/"content":"([^"]*ago)"/) || [])[1] || '';
-      out.push({ id: lv.contentId, title: textOf(meta && meta.title), ago });
+      out.push({ id: lv.contentId, title: textOf(meta && meta.title), ago: findAgo(meta && meta.metadata) });
     }
     Object.values(node).forEach(walk);
   })(data);
@@ -148,8 +164,9 @@ async function fetchVideos(channelId) {
       console.warn(`Falhou: ${err.message}`);
     }
   }
-  const url = `https://www.youtube.com/channel/${channelId}/videos?hl=en&gl=US`;
-  const list = parseVideosPage(await get(url, { lang: 'en-US,en;q=0.9' }));
+  // Em português: com hl=en o YouTube devolve títulos traduzidos à máquina.
+  const url = `https://www.youtube.com/channel/${channelId}/videos?hl=pt-BR&gl=BR&persist_hl=1`;
+  const list = parseVideosPage(await get(url));
   console.log(`Fonte: ${url}`);
   return list.map(({ id, title, ago }) => ({ id, title, published: approxDate(ago) }));
 }
