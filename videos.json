@@ -2,63 +2,43 @@
   "channelId": "UCPl-Y1ypgzViQQDxeI26fMQ",
   "videos": [
     {
-      "id": "Pu2i_yJa6iE",
-      "title": "Codex: o que minha esposa fez com os PDFs de estudo",
-      "published": null
-    },
-    {
       "id": "cCgpFQYytUQ",
       "title": "Claude Code: como eu edito meus vídeos com IA",
-      "published": null
+      "published": "2026-11-04"
     },
     {
       "id": "2DsmUIrO6W8",
       "title": "GPT-6.1 Sol vs Astra: qual vale mais a pena?",
-      "published": "2026-10-30"
+      "published": "2026-10-29"
     },
     {
       "id": "CZFTzjgHq7E",
       "title": "Claude Code: dá para aprender enquanto a IA programa?",
-      "published": "2026-10-27"
+      "published": "2026-10-26"
     },
     {
       "id": "2Kxx83lZ2w4",
       "title": "Claude Opus 5.5: o jeito de pedir que destrava o modelo",
-      "published": "2026-10-23"
+      "published": "2026-10-22"
     },
     {
       "id": "wgaPp3o5yuk",
       "title": "Opus 5.5 vs GPT-6 Astra: pedi o mesmo jogo pros dois",
-      "published": null
+      "published": "2026-10-19"
     },
     {
       "id": "Q7vnxCa8ca4",
       "title": "Claude Code Mods: contexto, replay e revisão de edições na tela",
-      "published": null
+      "published": "2026-10-15"
     },
     {
       "id": "F31EMdBbYxU",
       "title": "ChatGPT Work de Graça: Testei o agente sem assinar nada",
-      "published": null
+      "published": "2026-10-13"
     },
     {
       "id": "CNHTLZFeW6E",
       "title": "Pare de recomeçar a mesma pesquisa toda semana",
-      "published": null
-    },
-    {
-      "id": "ad_j0v0eusA",
-      "title": "ChatGPT: 4 mudanças no prompt pra respostas que dá pra usar",
-      "published": "2026-10-06"
-    },
-    {
-      "id": "s33_4V2ItDc",
-      "title": "Como Deixar o Claude Cowork Rápido e Econômico em 3 Passos",
-      "published": "2026-10-06"
-    },
-    {
-      "id": "lww7iuBLMsY",
-      "title": "5 Automações no Claude Cowork Que Me Devolveram 10 Horas Por Semana",
       "published": "2026-10-06"
     }
   ]
