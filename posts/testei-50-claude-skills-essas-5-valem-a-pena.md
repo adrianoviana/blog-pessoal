@@ -27,9 +27,6 @@ Neste vídeo mostro quais são, demonstro cada uma, e explico por que valem seu 
 4. **Lead Research Assistant** - Assistente de pesquisa
 5. **Skill Creator** - Criação de suas próprias skills
 
-<div class="video-container">
-  <iframe src="https://www.youtube.com/embed/elezyNTdDME" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
 
 ---
 

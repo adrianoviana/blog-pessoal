@@ -15,9 +15,6 @@ video: J520tu4dd9o
 
 Neste vídeo, mostro como usar o novo modo Agente do GitHub Copilot para automatizar tarefas complexas de programação enquanto você mantém o controle total do código.
 
-<div class="video-container">
-  <iframe src="https://www.youtube.com/embed/J520tu4dd9o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
 
 ---
 

@@ -26,17 +26,45 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 
 const SITE = {
   newsletterSubscribers: '300+',
-  youtubeSubscribers: '5k+'
+  youtubeSubscribers: '5k+',
+  youtubeUrl: 'https://www.youtube.com/@adriano_viana',
+  instagramUrl: 'https://www.instagram.com/adrianov.ai/'
 };
+const attr = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const fmt = n => n.toLocaleString('pt-BR');
 
 function getPostTemplate(post) {
   const dir = post.dir || 'blog';
   const levelLine = post.level ? `<span>Nível ${post.level}</span>` : '';
   const videoBlock = post.video ? `
-      <div class="video-embed" style="margin: var(--sp-3) 0;">
-        <iframe src="https://www.youtube.com/embed/${post.video}" title="${post.title}" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      <div class="video-embed" style="margin: var(--sp-3) 0 0;">
+        <iframe src="https://www.youtube.com/embed/${post.video}?rel=0" title="${attr(post.title)}" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-subscribe">
+        <p><strong>Este vídeo está no canal.</strong> <span>${SITE.youtubeSubscribers} pessoas já acompanham os testes de toda semana.</span></p>
+        <div class="btn-row">
+          <a class="btn btn-primary btn-sm" href="${SITE.youtubeUrl}?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="post_youtube_subscribe"><span data-icon="youtube"></span>Inscrever no canal</a>
+          <a class="link-arrow" href="https://www.youtube.com/watch?v=${post.video}" target="_blank" rel="noopener noreferrer" data-track="post_youtube_watch">Assistir no YouTube ↗</a>
+        </div>
       </div>` : '';
+  // Dados estruturados do vídeo: ajudam o Google a mostrar a miniatura
+  // e o post na aba Vídeos da busca.
+  const videoJsonLd = post.video ? `
+  <script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: post.title,
+    description: post.excerpt,
+    thumbnailUrl: [
+      `https://i.ytimg.com/vi/${post.video}/maxresdefault.jpg`,
+      `https://i.ytimg.com/vi/${post.video}/hqdefault.jpg`
+    ],
+    uploadDate: post.date,
+    embedUrl: `https://www.youtube.com/embed/${post.video}`,
+    contentUrl: `https://www.youtube.com/watch?v=${post.video}`,
+    inLanguage: 'pt-BR',
+    author: { '@type': 'Person', name: 'Adriano Viana', url: 'https://www.adrianoviana.com.br/' }
+  }).replace(/</g, '\\u003c')}</script>` : '';
   const reelLink = post.reel
     ? `<a href="${post.reel}" target="_blank" rel="noopener noreferrer" data-track="guia_reel">Ver o Reel no Instagram ↗</a>`
     : `Siga <a href="https://www.instagram.com/adrianov.ai/" target="_blank" rel="noopener noreferrer" data-track="guia_instagram">@adrianov.ai</a> no Instagram.`;
@@ -69,7 +97,7 @@ function getPostTemplate(post) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/normalize.css?v=4">
-  <link rel="stylesheet" href="/css/main.css?v=6">
+  <link rel="stylesheet" href="/css/main.css?v=8">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJ622QQBEJ"></script>
   <script>
@@ -78,7 +106,7 @@ function getPostTemplate(post) {
     gtag('js', new Date());
     gtag('config', 'G-FJ622QQBEJ');
   </script>
-  <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+  <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>${videoJsonLd}
 </head>
 <body>
   <div class="promo-bar">
@@ -89,6 +117,7 @@ function getPostTemplate(post) {
     <nav class="nav-container" aria-label="Principal">
       <div class="nav-brand"><a href="/"><img src="/assets/images/profile.jpg" alt="" width="30" height="30">@adriano_viana</a></div>
       <ul class="nav-menu">
+        <li><a href="/#youtube">Vídeos</a></li>
         <li><a href="/#trilha">Trilha</a></li>
         <li><a href="/kit.html">Kit grátis</a></li>
         <li><a href="/parcerias.html">Parcerias</a></li>
@@ -130,7 +159,7 @@ function getPostTemplate(post) {
         <div class="boilerplate">
           <p>Este texto chegou até você porque <strong>${SITE.newsletterSubscribers} assinantes</strong> e <strong>${SITE.youtubeSubscribers} inscritos no canal</strong> decidiram aprender IA na prática, e mandaram adiante.</p>
           <p>Se ajudou, encaminhe para um colega que ainda faz isso na mão. É assim que a Behind the Prompt cresce.</p>
-          <p>Novo por aqui? Assine abaixo e pegue o <a href="/kit.html">Kit inicial de skills</a> no e-mail de boas-vindas. E me acompanhe no <a href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer">X</a> e no <a href="https://www.youtube.com/@adriano_viana" target="_blank" rel="noopener noreferrer">YouTube</a>.</p>
+          <p>Novo por aqui? Assine abaixo e pegue o <a href="/kit.html">Kit inicial de skills</a> no e-mail de boas-vindas. E me acompanhe no <a href="${SITE.youtubeUrl}?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="post_youtube_subscribe">YouTube</a>, no <a href="${SITE.instagramUrl}" target="_blank" rel="noopener noreferrer" data-track="instagram_follow">Instagram</a> e no <a href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer">X</a>.</p>
         </div>
         <div class="signup" id="assinar" style="margin-top: var(--sp-3)">
           <p class="signup-title">Receba a próxima edição + o Kit inicial de skills</p>
@@ -158,6 +187,7 @@ function getPostTemplate(post) {
         <div class="footer-links">
           <a href="https://www.youtube.com/@adriano_viana?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-track="youtube_subscribe"><span data-icon="youtube"></span>YouTube</a>
           <a href="https://www.linkedin.com/in/adrianoviana/" target="_blank" rel="noopener noreferrer" data-track="linkedin_follow"><span data-icon="linkedin"></span>LinkedIn</a>
+          <a href="https://www.instagram.com/adrianov.ai/" target="_blank" rel="noopener noreferrer" data-track="instagram_follow"><span data-icon="instagram"></span>Instagram</a>
           <a href="https://x.com/adriano_viana" target="_blank" rel="noopener noreferrer" data-track="x_follow"><span data-icon="x"></span>X</a>
           <a href="https://adriano-newsletter.beehiiv.com/" target="_blank" rel="noopener noreferrer" data-track="newsletter_archive"><span data-icon="mail"></span>Edições anteriores</a>
         </div>
@@ -178,7 +208,7 @@ function getPostTemplate(post) {
     </div>
   </footer>
 
-  <script src="/js/site.js?v=6"></script>
+  <script src="/js/site.js?v=9"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 </body>
 </html>`;

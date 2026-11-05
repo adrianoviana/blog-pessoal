@@ -1,0 +1,37 @@
+name: Vídeos do YouTube
+# Busca os vídeos novos do canal e atualiza videos.json, que alimenta a
+# seção "Canal" da home. Sem isso, cada vídeo novo exigia editar o site.
+on:
+  schedule:
+    - cron: '23 */6 * * *'   # a cada 6 horas
+  workflow_dispatch: {}       # botão "Run workflow" na aba Actions
+permissions:
+  contents: write
+concurrency:
+  group: youtube-videos
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Atualizar videos.json
+        env:
+          # Opcional: Settings → Secrets and variables → Actions → Variables.
+          # Sem ela, o script descobre o ID do canal pela página @adriano_viana.
+          YOUTUBE_CHANNEL_ID: ${{ vars.YOUTUBE_CHANNEL_ID }}
+        run: node scripts/update-videos.js
+      - name: Commit, se mudou
+        run: |
+          if git diff --quiet -- videos.json && git ls-files --error-unmatch videos.json >/dev/null 2>&1; then
+            echo "Nenhum vídeo novo."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add videos.json
+          git commit -m "Vídeos do YouTube: atualiza videos.json"
+          git push

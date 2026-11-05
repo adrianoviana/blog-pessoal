@@ -15,9 +15,6 @@ video: 220T91jXjys
 
 Neste vídeo, mostro como usar Claude Skills para evitar AI Slop e melhorar a qualidade do código gerado por IA, desde o básico até técnicas avançadas.
 
-<div class="video-container">
-  <iframe src="https://www.youtube.com/embed/220T91jXjys" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
 
 ---
 

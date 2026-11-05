@@ -73,6 +73,14 @@ npm run build:watch
 
 Isso monitora mudanças em `/posts` e `/guias` e reconstrói automaticamente. `npm run dev` faz o mesmo e serve o site em `http://localhost:8080`.
 
+## Vídeos do YouTube (automático)
+
+A seção "Canal" da home lê o `videos.json`. O workflow `.github/workflows/youtube.yml` roda a cada 6 horas, busca o feed do canal [@adriano_viana](https://www.youtube.com/@adriano_viana) e faz commit no `videos.json` quando entra vídeo novo. O mais recente vai para o destaque e para o selo "Novo vídeo" no topo da home. Shorts ficam de fora.
+
+- Para atualizar na hora: aba **Actions → Vídeos do YouTube → Run workflow**, ou `npm run videos` localmente.
+- O ID do canal é descoberto sozinho na primeira execução e fica salvo no `videos.json`. Para fixá-lo, crie a variável `YOUTUBE_CHANNEL_ID` em **Settings → Secrets and variables → Actions → Variables**.
+- Os números de inscritos continuam em `js/site.js` (`SITE`) e em `build-posts.js`.
+
 ## Guias dos Reels
 
 Cada Reel ou carrossel do @adrianov.ai com CTA "Comente PALAVRA" entrega uma página em `/guia/<slug>.html`. Veja [guias/README.md](guias/README.md) e o [modelo](guias/_modelo.md).
@@ -93,7 +101,10 @@ blog-pessoal/
 ├── assets/
 │   └── images/        # Imagens dos posts
 ├── js/
-│   └── site.js        # Prova social + trilha + menu
+│   └── site.js        # Prova social + trilha + vídeos + menu
+├── scripts/
+│   └── update-videos.js # Atualiza videos.json pelo feed do YouTube
+├── videos.json        # Vídeos da home (gerado pelo workflow)
 ├── build-posts.js     # Script de build
 ├── posts.json         # Lista de posts (gerado)
 ```
