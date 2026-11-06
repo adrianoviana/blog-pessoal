@@ -2,6 +2,16 @@
   "channelId": "UCPl-Y1ypgzViQQDxeI26fMQ",
   "videos": [
     {
+      "id": "7mPS9eFCSJY",
+      "title": "Sonnet 5.5 vs Opus 5.5: quando vale usar o mais caro?",
+      "published": null
+    },
+    {
+      "id": "Pu2i_yJa6iE",
+      "title": "Codex: o que minha esposa fez com os PDFs de estudo",
+      "published": "2026-11-05"
+    },
+    {
       "id": "cCgpFQYytUQ",
       "title": "Claude Code: como eu edito meus vídeos com IA",
       "published": "2026-11-04"
@@ -40,6 +50,16 @@
       "id": "CNHTLZFeW6E",
       "title": "Pare de recomeçar a mesma pesquisa toda semana",
       "published": "2026-10-06"
+    },
+    {
+      "id": "ad_j0v0eusA",
+      "title": "ChatGPT: 4 mudanças no prompt pra respostas que dá pra usar",
+      "published": "2026-10-07"
+    },
+    {
+      "id": "s33_4V2ItDc",
+      "title": "Como Deixar o Claude Cowork Rápido e Econômico em 3 Passos",
+      "published": "2026-10-07"
     }
   ]
 }
