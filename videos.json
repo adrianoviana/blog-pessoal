@@ -2,8 +2,18 @@
   "channelId": "UCPl-Y1ypgzViQQDxeI26fMQ",
   "videos": [
     {
+      "id": "wRHSqmLTB0k",
+      "title": "Manus 2.0: como o material de estudo virou um jogo 3D",
+      "published": "2026-11-07"
+    },
+    {
       "id": "Pu2i_yJa6iE",
       "title": "Codex: o que minha esposa fez com os PDFs de estudo",
+      "published": "2026-11-06"
+    },
+    {
+      "id": "7mPS9eFCSJY",
+      "title": "Sonnet 5.5 vs Opus 5.5: quando vale usar o mais caro?",
       "published": "2026-11-06"
     },
     {
@@ -45,6 +55,11 @@
       "id": "CNHTLZFeW6E",
       "title": "Pare de recomeçar a mesma pesquisa toda semana",
       "published": "2026-10-06"
+    },
+    {
+      "id": "ad_j0v0eusA",
+      "title": "ChatGPT: 4 mudanças no prompt pra respostas que dá pra usar",
+      "published": "2026-10-10"
     }
   ]
 }
