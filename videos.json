@@ -2,6 +2,11 @@
   "channelId": "UCPl-Y1ypgzViQQDxeI26fMQ",
   "videos": [
     {
+      "id": "ZgSheyL0PeU",
+      "title": "Claude Fable 5.2 fez esse jogo 3D do zero",
+      "published": "2026-11-16"
+    },
+    {
       "id": "wRHSqmLTB0k",
       "title": "Manus 2.0: como o material de estudo virou um jogo 3D",
       "published": "2026-11-11"
@@ -40,26 +45,6 @@
       "id": "wgaPp3o5yuk",
       "title": "Opus 5.5 vs GPT-6 Astra: pedi o mesmo jogo pros dois",
       "published": "2026-10-19"
-    },
-    {
-      "id": "Q7vnxCa8ca4",
-      "title": "Claude Code Mods: contexto, replay e revisão de edições na tela",
-      "published": "2026-10-15"
-    },
-    {
-      "id": "F31EMdBbYxU",
-      "title": "ChatGPT Work de Graça: Testei o agente sem assinar nada",
-      "published": "2026-10-17"
-    },
-    {
-      "id": "CNHTLZFeW6E",
-      "title": "Pare de recomeçar a mesma pesquisa toda semana",
-      "published": "2026-10-17"
-    },
-    {
-      "id": "ad_j0v0eusA",
-      "title": "ChatGPT: 4 mudanças no prompt pra respostas que dá pra usar",
-      "published": "2026-10-17"
     }
   ]
 }
