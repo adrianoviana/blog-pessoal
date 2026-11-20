@@ -2,6 +2,11 @@
   "channelId": "UCPl-Y1ypgzViQQDxeI26fMQ",
   "videos": [
     {
+      "id": "68pz6kqBeIw",
+      "title": "Claude Code: pedi “melhore” 20 vezes no mesmo site",
+      "published": "2026-11-20"
+    },
+    {
       "id": "81hS2F1Hw0s",
       "title": "Claude Fable 5.2 vs Opus 5.5: o ganho vale o gasto?",
       "published": "2026-11-18"
@@ -45,11 +50,6 @@
       "id": "2Kxx83lZ2w4",
       "title": "Claude Opus 5.5: o jeito de pedir que destrava o modelo",
       "published": "2026-10-22"
-    },
-    {
-      "id": "wgaPp3o5yuk",
-      "title": "Opus 5.5 vs GPT-6 Astra: pedi o mesmo jogo pros dois",
-      "published": "2026-10-19"
     }
   ]
 }
