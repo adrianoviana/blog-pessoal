@@ -2,6 +2,11 @@
   "channelId": "UCPl-Y1ypgzViQQDxeI26fMQ",
   "videos": [
     {
+      "id": "us0iGqBeSFo",
+      "title": "Pedir pro Claude Code conferir o próprio trabalho resolve?",
+      "published": "2026-11-23"
+    },
+    {
       "id": "68pz6kqBeIw",
       "title": "Claude Code: pedi “melhore” 20 vezes no mesmo site",
       "published": "2026-11-20"
@@ -45,11 +50,6 @@
       "id": "CZFTzjgHq7E",
       "title": "Claude Code: dá para aprender enquanto a IA programa?",
       "published": "2026-10-26"
-    },
-    {
-      "id": "2Kxx83lZ2w4",
-      "title": "Claude Opus 5.5: o jeito de pedir que destrava o modelo",
-      "published": "2026-10-22"
     }
   ]
 }
